@@ -1,0 +1,170 @@
+% clear SYS1277 SYS1278
+SYS1277=struct('MB',20,'WB',0.25);
+SYS1278=struct('MB',1,'WB',0.04);
+
+SYS1036=9.5e9;
+
+SYS0141=2.51; % log conversion
+
+SYS1215=[1.0 1.0]; % Beam shape loss coefficient 0 (uniform/Taylor)
+SYS1216=[-3.0058e-20 -3.0058e-20]; % Beam shape loss coefficient 1 (uniform/Taylor)
+SYS1217=[4.0488e-40 4.0488e-40]; % Beam shape loss coefficient 2 (uniform/Taylor)
+SYS1218=[-2.3428e-60 -2.3428e-60]; % Beam shape loss coefficient 3 (uniform/Taylor)
+SYS1335=u_beam_width;	% U beamwidth MB weighted
+SYS1336=v_beam_width;	% V beamwidth MB weighted
+
+%SYS1277=351.56;
+%SYS1278=3.8;
+%SYS1278=0.9;
+%SYS1278=3.4;
+%SYS1279=u_beam_width^2;
+%SYS1279=1.4762e-5;
+%SYS1280=1.1141000e-8;
+%SYS1281=1.4762e-5;
+%SYS1282=1.1141000e-8;
+SYS1279=(1/1.6)*1.4762e-5;
+SYS1280=(10e-6)^2;
+SYS1281=(1/1.6)*1.4762e-5;
+SYS1282=(10e-6)^2;
+
+SYS1017=1;
+SYS1018=1;
+SYS1033=7e-6; % switching time
+SYS0001_STC=0*0.5e-3; % clutter pad time
+
+
+% To set the following SAPS:
+%
+% acos(sqrt(1-0.4477))*rad_to_deg = theta (desired-half-cone-angle)
+%
+% or 
+%
+%	SYS_SAP = (1-cos(deg_to_rad*theta)^2)
+%
+if strncmp(radar_name,'UOES',4)
+   SYS1091=0.4477; SYS1092=0.5868; SYS1093=0.6378;
+elseif strncmp(radar_name,'DEM/VAL',7)
+   SYS1091=0.3127; SYS1092=0.5868; SYS1093=0.6378;
+elseif strncmp(radar_name,'EMD',3)
+   SYS1091=(1-cos(deg_to_rad*48)^2);
+   SYS1092=(1-cos(deg_to_rad*58)^2);
+   SYS1093=(1-cos(deg_to_rad*65)^2);
+elseif strncmp(radar_name,'HPD',3)
+   SYS1091=(1-cos(deg_to_rad*48)^2);
+   SYS1092=(1-cos(deg_to_rad*58)^2);
+   SYS1093=(1-cos(deg_to_rad*65)^2);
+elseif strncmp(radar_name,'SPY-1B',6)
+   SYS1091=(1-cos(deg_to_rad*48)^2);
+   SYS1092=(1-cos(deg_to_rad*58)^2);
+   SYS1093=(1-cos(deg_to_rad*65)^2);
+elseif strncmp(radar_name,'FBX-EMD',7)
+   FOV_factor=1;
+   SYS1091=(1-cos(deg_to_rad*48*FOV_factor)^2);
+   SYS1092=(1-cos(deg_to_rad*58*FOV_factor)^2);
+   SYS1093=(1-cos(deg_to_rad*65*FOV_factor)^2);
+elseif strncmp(radar_name,'GBR-P',5)
+   SYS1091=4.68500000E-2; SYS1092=4.68500000E-2; SYS1093=4.68500000E-2;
+elseif strncmp(radar_name,'GBR-P2',6)
+   SYS1091=4.68500000E-2; SYS1092=4.68500000E-2; SYS1093=4.68500000E-2;
+elseif strncmp(radar_name,'GBR-P3',6)
+   SYS1091=4.68500000E-2; SYS1092=4.68500000E-2; SYS1093=4.68500000E-2;
+elseif strncmp(radar_name,'GBR-P4',6)
+   SYS1091=4.68500000E-2; SYS1092=4.68500000E-2; SYS1093=4.68500000E-2;
+elseif strncmp(radar_name,'FBX-XBR',7)
+   %    SYS1091=4.68500000E-2; SYS1092=4.68500000E-2; SYS1093=4.68500000E-2;
+   FOV_factor=1;
+   SYS1091=(1-cos(deg_to_rad*48*FOV_factor)^2);
+   SYS1092=(1-cos(deg_to_rad*58*FOV_factor)^2);
+   SYS1093=(1-cos(deg_to_rad*65*FOV_factor)^2);
+else
+   error(['Unknown radar type in SYS_SAPS.m for setting FOV!!!']);
+end;
+
+SYS1410=2.0;
+SYS1069=0.20;
+
+% AM parameters
+
+SYS2562=[6.91 6.91];
+SYS2563=[0.5 0.5];
+SYS2564=[1.03 1.04];
+SYS2565=[9.18 15.3];
+SYS2576=0.0872;
+SYS2577=0.0349;
+SYS2578=0.0349;
+SYS2579=0.0349;
+
+% Surface Refractivity
+SYS2555=21.478;
+SYS1433=1000;
+SYS1434=15;
+SYS1435=10;
+
+SYS0000=[...
+      9030000000.00000
+   9060000000.00000
+   9090000000.00000
+   9120000000.00000
+   9150000000.00000
+   9180000000.00000
+   9210000000.00000
+   9240000000.00000
+   9270000000.00000
+   9300000000.00000
+   9330000000.00000
+   9360000000.00000
+   9390000000.00000
+   9420000000.00000
+   9450000000.00000
+   9480000000.00000
+   9510000000.00000
+   9540000000.00000
+   9570000000.00000
+   9600000000.00000
+   9630000000.00000
+   9660000000.00000
+   9690000000.00000
+   9720000000.00000
+   9750000000.00000
+   9780000000.00000
+   9810000000.00000
+   9840000000.00000
+   9870000000.00000
+   9900000000.00000
+   9930000000.00000
+   9960000000.00000
+   9500000000.00000
+   9500000000.00000
+   9750000000.00000
+   9500000000.00000
+   9250000000.00000
+   9845000000.00000
+   9605000000.00000
+   9365000000.00000
+   9125000000.00000];
+i_F_WB=33; i_F_WBX=34; i_F_WB_2H=35; i_F_WB_2L=36;
+i_F_WB_4MH=37; i_F_WB_4ML=38; i_F_WB_4L=40;
+
+SYS1125=[...
+      1000000.00000
+   7500000.00000
+   10000000.00000
+   250000000.00000
+   500000000.00000
+   1000000000.00000
+   1000000000.00000];
+
+SYS2672=4.0;  % Cued Search C(4,4)+SYS2672 for P_RRC initialization
+
+i_BW_NB=1; i_BW_MBC=2; i_BW_MB=3; i_BW_QUARTER_WB=4;
+i_BW_HALF_WB=5; i_BW_WBX=6; i_BW_WB=7;
+
+WEIGHTED=1; UNWEIGHTED=2;
+
+SYS2697=1.000000000000000E-001;
+SYS2698=1.000000000000000E-001;
+SYS2699=1.000000000000001E-001;
+SYS2700=3.570000000000000E-002;
+SYS2701=1.250000000000000E-002;
+SYS2702=1.00000000000000;
+SYS2703=0*2.500000000000000E-007;

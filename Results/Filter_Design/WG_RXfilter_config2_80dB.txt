@@ -1,0 +1,58 @@
+
+File Name: C:\MATLAB_Toolbox\Results\WG_RXfilter_config2_80dB.txt 
+Date Created: 15-Apr-2009 
+
+=========================
+
+Filter Design Specs: 
+  filter order = 8 
+  passband ripple = 0.010000 dB 
+  center frequency = 11.950000 GHz 
+  lower corner freq = 11.500000 GHz 
+  upper corner freq = 12.400000 GHz 
+  desired attenuation = 85.000000 GHz 
+  low rejection frequency = 10.000000 GHz 
+  high rejection frequency = 13.800000 GHz 
+  waveguide width: a = 0.900000 in 
+  waveguide height: b = 0.400000 in 
+  iris thickness = 0.040000 in 
+  filter length = 4.631232 in 
+
+Cavity Lengths [in]: 
+  Cavity 1 = 	 0.482016 
+  Cavity 2 = 	 0.543002 
+  Cavity 3 = 	 0.554288 
+  Cavity 4 = 	 0.556310 
+  Cavity 5 = 	 0.556310 
+  Cavity 6 = 	 0.554288 
+  Cavity 7 = 	 0.543002 
+  Cavity 8 = 	 0.482016 
+
+Iris Widths [in]: 
+  Iris 0,1 = 	 0.380781 
+  Iris 1,2 = 	 0.238579 
+  Iris 2,3 = 	 0.200518 
+  Iris 3,4 = 	 0.192838 
+  Iris 4,5 = 	 0.191174 
+  Iris 5,6 = 	 0.192838 
+  Iris 6,7 = 	 0.200518 
+  Iris 7,8 = 	 0.238579 
+  Iris 8,9 = 	 0.380781 
+
+Symmetry Details: 
+  SymType = even 
+  SymPoint = (0.000000,2.315616,0.000000) 
+  SymIris = 4,5 
+  SymCavity = 4 
+
+HFSS Object Coordinates [in]: 
+  Input Cav: 	 x=-0.450000, y=-0.247093, z=0.000000, dx=0.900000, dy=0.247093, dz=0.400000 
+  Iris 0,1: 	 x=-0.190391, y=0.000000, z=0.000000, dx=0.380781, dy=0.040000, dz=0.400000 
+  Iris 1,2: 	 x=-0.119289, y=0.522016, z=0.000000, dx=0.238579, dy=0.040000, dz=0.400000 
+  Iris 2,3: 	 x=-0.100259, y=1.105018, z=0.000000, dx=0.200518, dy=0.040000, dz=0.400000 
+  Iris 3,4: 	 x=-0.096419, y=1.699306, z=0.000000, dx=0.192838, dy=0.040000, dz=0.400000 
+  Iris 4,5: 	 x=-0.095587, y=2.295616, z=0.000000, dx=0.191174, dy=0.040000, dz=0.400000 
+  Cavity 1: 	 x=-0.450000, y=0.040000, z=0.000000, dx=0.900000, dy=0.482016, dz=0.400000 
+  Cavity 2: 	 x=-0.450000, y=0.562016, z=0.000000, dx=0.900000, dy=0.543002, dz=0.400000 
+  Cavity 3: 	 x=-0.450000, y=1.145018, z=0.000000, dx=0.900000, dy=0.554288, dz=0.400000 
+  Cavity 4: 	 x=-0.450000, y=1.739306, z=0.000000, dx=0.900000, dy=0.556310, dz=0.400000 

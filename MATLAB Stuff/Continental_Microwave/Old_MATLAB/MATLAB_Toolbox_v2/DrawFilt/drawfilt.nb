@@ -1,0 +1,4204 @@
+(***********************************************************************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used on any computer system with Mathematica 3.0,
+MathReader 3.0, or any compatible application. The data for the notebook 
+starts with the line of stars above.
+
+To get the notebook into a Mathematica-compatible application, do one of 
+the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing the 
+word CacheID, otherwise Mathematica-compatible applications may try to 
+use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+***********************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[    117989,       3263]*)
+(*NotebookOutlinePosition[    143082,       4176]*)
+(*  CellTagsIndexPosition[    143038,       4172]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell["DrawFilt - Drawing  Filters", "Title",
+  Evaluatable->False,
+  CellHorizontalScrolling->False,
+  TextAlignment->Center],
+
+Cell["Miroslav D. Lutovac and Dejan V. Tosic", "Subsubtitle",
+  Evaluatable->False,
+  CellHorizontalScrolling->False,
+  TextAlignment->Center],
+
+Cell["Info", "Section",
+  Evaluatable->False,
+  FontFamily->"Arial",
+  FontSize->14,
+  FontWeight->"Bold"],
+
+Cell["\<\
+(*  DrawMath                                                      
+     Filter realization generated from DrawFilt  v2.1             
+                                                                  
+                 Draw Filter Realizations                         
+                                                                  
+   Authors: Miroslav D. Lutovac, Dejan V. Tosic, 1999/02/21       
+   lutovac@iritel.bg.ac.yu    http://galeb.etf.bg.ac.yu/~lutovac/ 
+   tosic@galeb.etf.bg.ac.yu   http://www.rcub.bg.ac.yu/~tosicde/  
+   Copyright (c) 1999-2000 by Lutovac & Tosic                     
+    $Revision: 1.21 $  $Date: 2000/10/03 13:45$
+                                                                   
+   See also:                                                      
+   Miroslav D. Lutovac, Dejan V. Tosic, Brian L. Evans            
+        Filter Design for Signal Processing                       
+           Using MATLAB and Mathematica                           
+        Prentice Hall - ISBN 0-201-36130-2                        
+         http://www.prenhall.com/lutovac           *)\
+\>", "Input",
+  FormatType->TextForm,
+  FontFamily->"Arial",
+  FontSize->10,
+  FontWeight->"Plain"],
+
+Cell[CellGroupData[{
+
+Cell["Initialize", "Section",
+  Evaluatable->False,
+  FontFamily->"Arial",
+  FontSize->14,
+  FontWeight->"Bold"],
+
+Cell[BoxData[{
+    \(Clear[x0, y0, dx, ds]\), 
+    \(SetDirectory["\<C:\\AFD\\DrawFilt\>"]; \n<< "\<drawflib.m\>"\), 
+    \(<< "\<drawmath.m\>"\)}], "Input",
+  PageWidth->Infinity,
+  FontFamily->"Courier New",
+  FontSize->10,
+  FontWeight->"Bold"]
+}, Open  ]],
+
+Cell["Schematic", "Section",
+  Evaluatable->False,
+  FontFamily->"Arial",
+  FontSize->14,
+  FontWeight->"Bold"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(\(DrawMath[0, 0, 1, 5, 10]; \)\)], "Input",
+  PageWidth->Infinity,
+  FontFamily->"Courier New",
+  FontSize->12,
+  FontWeight->"Bold"],
+
+Cell[GraphicsData["PostScript", "\<\
+%!
+%%Creator: Mathematica
+%%AspectRatio: .48077 
+MathPictureStart
+/Mabs {
+Mgmatrix idtransform
+Mtmatrix dtransform
+} bind def
+/Mabsadd { Mabs
+3 -1 roll add
+3 1 roll add
+exch } bind def
+%% Graphics
+/Courier findfont 10  scalefont  setfont
+% Scaling calculations
+-0.0128205 0.03663 -0.190018 0.03663 [
+[.2619 .39606 -3.5 0 ]
+[.2619 .39606 3.5 15 ]
+[.2619 .35943 -10 -7.5 ]
+[.2619 .35943 0 7.5 ]
+[.2619 .35943 0 0 ]
+[.2619 .35943 17 15 ]
+[.44505 .39606 -3.5 0 ]
+[.44505 .39606 3.5 15 ]
+[.44505 .35943 -10 -7.5 ]
+[.44505 .35943 0 7.5 ]
+[.44505 .35943 0 0 ]
+[.44505 .35943 17 15 ]
+[.62821 .39606 -3.5 0 ]
+[.62821 .39606 3.5 15 ]
+[.62821 .35943 -10 -7.5 ]
+[.62821 .35943 0 7.5 ]
+[.62821 .35943 0 0 ]
+[.62821 .35943 17 15 ]
+[.34127 .30449 -7 0 ]
+[.34127 .30449 0 15 ]
+[.52442 .30449 -7 0 ]
+[.52442 .30449 0 15 ]
+[.15812 .30449 -7 0 ]
+[.15812 .30449 0 15 ]
+[.62821 .17628 -3.5 -15 ]
+[.62821 .17628 3.5 0 ]
+[.62821 .21291 -10 -7.5 ]
+[.62821 .21291 0 7.5 ]
+[.62821 .21291 0 0 ]
+[.62821 .21291 17 15 ]
+[.44505 .17628 -3.5 -15 ]
+[.44505 .17628 3.5 0 ]
+[.44505 .21291 -10 -7.5 ]
+[.44505 .21291 0 7.5 ]
+[.44505 .21291 0 0 ]
+[.44505 .21291 17 15 ]
+[.2619 .17628 -3.5 -15 ]
+[.2619 .17628 3.5 0 ]
+[.2619 .21291 -10 -7.5 ]
+[.2619 .21291 0 7.5 ]
+[.2619 .21291 0 0 ]
+[.2619 .21291 17 15 ]
+[.32906 .12439 0 -30 ]
+[.32906 .12439 23 -15 ]
+[.32906 .12439 0 -15 ]
+[.32906 .12439 10 0 ]
+[.51221 .12439 0 -30 ]
+[.51221 .12439 23 -15 ]
+[.51221 .12439 0 -15 ]
+[.51221 .12439 10 0 ]
+[.14591 .12439 0 -30 ]
+[.14591 .12439 23 -15 ]
+[.14591 .12439 0 -15 ]
+[.14591 .12439 10 0 ]
+[.08333 .35943 -23 -7.5 ]
+[.08333 .35943 0 7.5 ]
+[.17033 .36126 -6 0 ]
+[.17033 .36126 6 15 ]
+[.35348 .36126 -6 0 ]
+[.35348 .36126 6 15 ]
+[.53663 .36126 -6 0 ]
+[.53663 .36126 6 15 ]
+[.72161 .21474 0 0 ]
+[.72161 .21474 17 15 ]
+[.53846 .21474 0 0 ]
+[.53846 .21474 12 15 ]
+[.35531 .21474 0 0 ]
+[.35531 .21474 12 15 ]
+[.17216 .21474 0 0 ]
+[.17216 .21474 12 15 ]
+[.13095 .17628 -12 -7.5 ]
+[.13095 .17628 0 7.5 ]
+[.3196 .17628 0 -7.5 ]
+[.3196 .17628 12 7.5 ]
+[.50275 .17628 0 -7.5 ]
+[.50275 .17628 17 7.5 ]
+[.32906 .04808 0 0 ]
+[.32906 .04808 7 15 ]
+[.51221 .04808 0 0 ]
+[.51221 .04808 7 15 ]
+[.80678 .02976 0 -7.5 ]
+[.80678 .02976 23 7.5 ]
+[.13095 .06639 -17 -7.5 ]
+[.13095 .06639 0 7.5 ]
+[.3141 .06639 -17 -7.5 ]
+[.3141 .06639 0 7.5 ]
+[.49725 .06639 -17 -7.5 ]
+[.49725 .06639 0 7.5 ]
+[.35531 .03159 0 0 ]
+[.35531 .03159 17 15 ]
+[.53846 .03159 0 0 ]
+[.53846 .03159 17 15 ]
+[.35348 .46932 -46.5 -7.5 ]
+[.35348 .46932 46.5 7.5 ]
+[.35348 .43269 -70.5 -7.5 ]
+[.35348 .43269 70.5 7.5 ]
+[.97619 .35943 -5.5 -7.5 ]
+[.97619 .35943 5.5 7.5 ]
+[.02381 .35943 -5.5 -7.5 ]
+[.02381 .35943 5.5 7.5 ]
+[.70757 .30449 -7 0 ]
+[.70757 .30449 0 15 ]
+[.69536 .12439 0 -30 ]
+[.69536 .12439 23 -15 ]
+[.69536 .12439 0 -15 ]
+[.69536 .12439 10 0 ]
+[.69536 .04808 0 0 ]
+[.69536 .04808 7 15 ]
+[.8663 .28617 0 -7.5 ]
+[.8663 .28617 7 7.5 ]
+[.82967 .28617 -10 -7.5 ]
+[.82967 .28617 0 7.5 ]
+[.82967 .28617 0 0 ]
+[.82967 .28617 17 15 ]
+[.71978 .36126 -6 0 ]
+[.71978 .36126 6 15 ]
+[.6859 .17628 0 -7.5 ]
+[.6859 .17628 17 7.5 ]
+[.6804 .06639 -17 -7.5 ]
+[.6804 .06639 0 7.5 ]
+[.75824 .03159 0 0 ]
+[.75824 .03159 17 15 ]
+[.97619 .35943 -5.5 -7.5 ]
+[.97619 .35943 5.5 7.5 ]
+[.02381 .35943 -5.5 -7.5 ]
+[.02381 .35943 5.5 7.5 ]
+[ 0 0 0 0 ]
+[ 1 .48077 0 0 ]
+] MathScale
+% Start of Graphics
+1 setlinecap
+1 setlinejoin
+newpath
+0 g
+.5 Mabswid
+.17033 .35943 m
+.23443 .35943 L
+.23443 .3869 L
+.28938 .3869 L
+.28938 .33196 L
+.23443 .33196 L
+.23443 .3869 L
+.28938 .3869 L
+.28938 .35943 L
+.35348 .35943 L
+s
+.2207 .36401 m
+.22985 .35943 L
+.2207 .35485 L
+s
+gsave
+.2619 .39606 -64.5 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.2619 .35943 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.2619 .35943 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.35348 .35943 m
+.41758 .35943 L
+.41758 .3869 L
+.47253 .3869 L
+.47253 .33196 L
+.41758 .33196 L
+.41758 .3869 L
+.47253 .3869 L
+.47253 .35943 L
+.53663 .35943 L
+s
+.40385 .36401 m
+.413 .35943 L
+.40385 .35485 L
+s
+gsave
+.44505 .39606 -64.5 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.44505 .35943 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.44505 .35943 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.53663 .35943 m
+.60073 .35943 L
+.60073 .3869 L
+.65568 .3869 L
+.65568 .33196 L
+.60073 .33196 L
+.60073 .3869 L
+.65568 .3869 L
+.65568 .35943 L
+.71978 .35943 L
+s
+.587 .36401 m
+.59615 .35943 L
+.587 .35485 L
+s
+gsave
+.62821 .39606 -64.5 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.62821 .35943 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.62821 .35943 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+newpath
+.35348 .28617 .01832 0 365.73 arc
+s
+.34432 .28617 m
+.36264 .28617 L
+.35348 .28617 L
+.35348 .29533 L
+.35348 .27701 L
+s
+gsave
+.34127 .30449 -68 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.37179 .28617 Mdot
+.35043 .3167 m
+.35348 .31059 L
+.35653 .3167 L
+s
+.35348 .3228 m
+.35348 .30449 L
+s
+.32906 .28922 m
+.32295 .28617 L
+.32906 .28312 L
+s
+.31685 .28617 m
+.33516 .28617 L
+s
+.35043 .25565 m
+.35348 .26175 L
+.35653 .25565 L
+s
+.35348 .24954 m
+.35348 .26786 L
+s
+newpath
+.53663 .28617 .01832 0 365.73 arc
+s
+.52747 .28617 m
+.54579 .28617 L
+.53663 .28617 L
+.53663 .29533 L
+.53663 .27701 L
+s
+gsave
+.52442 .30449 -68 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.55495 .28617 Mdot
+.53358 .3167 m
+.53663 .31059 L
+.53968 .3167 L
+s
+.53663 .3228 m
+.53663 .30449 L
+s
+.51221 .28922 m
+.50611 .28617 L
+.51221 .28312 L
+s
+.5 .28617 m
+.51832 .28617 L
+s
+.53358 .25565 m
+.53663 .26175 L
+.53968 .25565 L
+s
+.53663 .24954 m
+.53663 .26786 L
+s
+newpath
+.17033 .28617 .01832 0 365.73 arc
+s
+.16117 .28617 m
+.17949 .28617 L
+.17033 .28617 L
+.17033 .29533 L
+.17033 .27701 L
+s
+gsave
+.15812 .30449 -68 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.18864 .28617 Mdot
+.16728 .3167 m
+.17033 .31059 L
+.17338 .3167 L
+s
+.17033 .3228 m
+.17033 .30449 L
+s
+.14591 .28922 m
+.1398 .28617 L
+.14591 .28312 L
+s
+.1337 .28617 m
+.15201 .28617 L
+s
+.16728 .25565 m
+.17033 .26175 L
+.17338 .25565 L
+s
+.17033 .24954 m
+.17033 .26786 L
+s
+.53663 .21291 m
+.60073 .21291 L
+.60073 .24038 L
+.65568 .24038 L
+.65568 .18544 L
+.60073 .18544 L
+.60073 .24038 L
+.65568 .24038 L
+.65568 .21291 L
+.71978 .21291 L
+s
+.66941 .21749 m
+.66026 .21291 L
+.66941 .20833 L
+s
+gsave
+.62821 .17628 -64.5 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.62821 .21291 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.62821 .21291 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.35348 .21291 m
+.41758 .21291 L
+.41758 .24038 L
+.47253 .24038 L
+.47253 .18544 L
+.41758 .18544 L
+.41758 .24038 L
+.47253 .24038 L
+.47253 .21291 L
+.53663 .21291 L
+s
+.48626 .21749 m
+.47711 .21291 L
+.48626 .20833 L
+s
+gsave
+.44505 .17628 -64.5 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.44505 .21291 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.44505 .21291 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.17033 .21291 m
+.23443 .21291 L
+.23443 .24038 L
+.28938 .24038 L
+.28938 .18544 L
+.23443 .18544 L
+.23443 .24038 L
+.28938 .24038 L
+.28938 .21291 L
+.35348 .21291 L
+s
+.30311 .21749 m
+.29396 .21291 L
+.30311 .20833 L
+s
+gsave
+.2619 .17628 -64.5 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.2619 .21291 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.2619 .21291 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.31685 .10913 m
+.33516 .13355 L
+.29853 .13355 L
+.31685 .10913 L
+.31685 .06639 L
+s
+.31685 .17628 m
+.31685 .13355 L
+s
+gsave
+.32906 .12439 -61 -34 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(h) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+gsave
+.32906 .12439 -61 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+68.625000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+.5 .10913 m
+.51832 .13355 L
+.48168 .13355 L
+.5 .10913 L
+.5 .06639 L
+s
+.5 .17628 m
+.5 .13355 L
+s
+gsave
+.51221 .12439 -61 -34 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(h) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(2) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+gsave
+.51221 .12439 -61 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+68.625000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+.1337 .10913 m
+.15201 .13355 L
+.11538 .13355 L
+.1337 .10913 L
+.1337 .06639 L
+s
+.1337 .17628 m
+.1337 .13355 L
+s
+gsave
+.14591 .12439 -61 -34 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(h) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(0) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+gsave
+.14591 .12439 -61 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+68.625000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+.1337 .35943 m
+.11538 .35943 L
+s
+newpath
+.10623 .35943 .00916 0 365.73 arc
+s
+gsave
+.08333 .35943 -84 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(x) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(n) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+.17033 .35943 m
+.17033 .3228 L
+s
+.35348 .35943 m
+.35348 .3228 L
+s
+.53663 .35943 m
+.53663 .3228 L
+s
+.35348 .21291 m
+.35348 .24954 L
+s
+.53663 .21291 m
+.53663 .24954 L
+s
+.17033 .21291 m
+.17033 .24954 L
+s
+.1337 .28617 m
+.1337 .17628 L
+s
+3 Mabswid
+.17033 .35943 Mdot
+gsave
+.17033 .36126 -67 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.35348 .35943 Mdot
+gsave
+.35348 .36126 -67 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(2) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.53663 .35943 Mdot
+gsave
+.53663 .36126 -67 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(3) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.71978 .21291 Mdot
+gsave
+.72161 .21474 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(14) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.53663 .21291 Mdot
+gsave
+.53846 .21474 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(5) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.35348 .21291 Mdot
+gsave
+.35531 .21474 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(6) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.17033 .21291 Mdot
+gsave
+.17216 .21474 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(7) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.1337 .17628 Mdot
+gsave
+.13095 .17628 -73 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(8) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.31685 .17628 Mdot
+gsave
+.3196 .17628 -61 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(9) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.5 .17628 Mdot
+gsave
+.50275 .17628 -61 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(10) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.5 Mabswid
+.31685 .28617 m
+.31685 .17628 L
+s
+.5 .28617 m
+.5 .17628 L
+s
+newpath
+.31685 .02976 .01832 0 365.73 arc
+s
+.30769 .02976 m
+.32601 .02976 L
+.31685 .02976 L
+.31685 .03892 L
+.31685 .0206 L
+s
+gsave
+.32906 .04808 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.34127 .03281 m
+.34737 .02976 L
+.34127 .02671 L
+s
+.33516 .02976 m
+.35348 .02976 L
+s
+.3138 .06029 m
+.31685 .05418 L
+.3199 .06029 L
+s
+.31685 .06639 m
+.31685 .04808 L
+s
+.28632 .03281 m
+.29243 .02976 L
+.28632 .02671 L
+s
+.28022 .02976 m
+.29853 .02976 L
+s
+.31685 .01145 Mdot
+newpath
+.5 .02976 .01832 0 365.73 arc
+s
+.49084 .02976 m
+.50916 .02976 L
+.5 .02976 L
+.5 .03892 L
+.5 .0206 L
+s
+gsave
+.51221 .04808 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.52442 .03281 m
+.53053 .02976 L
+.52442 .02671 L
+s
+.51832 .02976 m
+.53663 .02976 L
+s
+.49695 .06029 m
+.5 .05418 L
+.50305 .06029 L
+s
+.5 .06639 m
+.5 .04808 L
+s
+.46947 .03281 m
+.47558 .02976 L
+.46947 .02671 L
+s
+.46337 .02976 m
+.48168 .02976 L
+s
+.5 .01145 Mdot
+.35348 .02976 m
+.46337 .02976 L
+s
+.75641 .02976 m
+.77473 .02976 L
+s
+newpath
+.78388 .02976 .00916 0 365.73 arc
+s
+gsave
+.80678 .02976 -61 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.062500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(y) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(n) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+.1337 .06639 m
+.1337 .02976 L
+.28022 .02976 L
+s
+3 Mabswid
+.1337 .06639 Mdot
+gsave
+.13095 .06639 -78 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(11) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.31685 .06639 Mdot
+gsave
+.3141 .06639 -78 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(12) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.5 .06639 Mdot
+gsave
+.49725 .06639 -78 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(13) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.5 Mabswid
+.1337 .35943 m
+.17033 .35943 L
+s
+3 Mabswid
+.35348 .02976 Mdot
+gsave
+.35531 .03159 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(16) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.53663 .02976 Mdot
+gsave
+.53846 .03159 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(17) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.35348 .46932 -107.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(Linear) show
+103.875000 14.625000 moveto
+%%IncludeResource: font Math1Mono
+%%IncludeFont: Math1Mono
+/Math1Mono findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+111.062500 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(phase) show
+151.937500 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1Mono
+%%DocumentNeededResources: + font Times-Bold
+%%DocumentNeededFonts: Math1Mono
+%%DocumentNeededFont: + Times-Bold
+%%DocumentFonts: font Math1Mono
+%%DocumentFonts: + font Times-Bold
+grestore
+gsave
+.35348 .43269 -131.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(FIRrealizationtype2) show
+199.250000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 12.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Bold
+%%DocumentNeededFonts: Times-Bold
+%%DocumentFonts: font Times-Bold
+grestore
+gsave
+.97619 .35943 -66.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 11.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+69.250000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Bold
+%%DocumentNeededFonts: Times-Bold
+%%DocumentFonts: font Times-Bold
+grestore
+gsave
+.02381 .35943 -66.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 11.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+69.250000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Bold
+%%DocumentNeededFonts: Times-Bold
+%%DocumentFonts: font Times-Bold
+grestore
+.5 Mabswid
+newpath
+.71978 .28617 .01832 0 365.73 arc
+s
+.71062 .28617 m
+.72894 .28617 L
+.71978 .28617 L
+.71978 .29533 L
+.71978 .27701 L
+s
+gsave
+.70757 .30449 -68 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.7381 .28617 Mdot
+.71673 .3167 m
+.71978 .31059 L
+.72283 .3167 L
+s
+.71978 .3228 m
+.71978 .30449 L
+s
+.69536 .28922 m
+.68926 .28617 L
+.69536 .28312 L
+s
+.68315 .28617 m
+.70147 .28617 L
+s
+.71673 .25565 m
+.71978 .26175 L
+.72283 .25565 L
+s
+.71978 .24954 m
+.71978 .26786 L
+s
+.71978 .21291 m
+.71978 .24954 L
+s
+.71978 .3228 m
+.71978 .35943 L
+s
+.68315 .10913 m
+.70147 .13355 L
+.66484 .13355 L
+.68315 .10913 L
+.68315 .06639 L
+s
+.68315 .17628 m
+.68315 .13355 L
+s
+gsave
+.69536 .12439 -61 -34 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(h) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+67.875000 14.625000 moveto
+(@) show
+71.187500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(3) show
+%%IncludeResource: font Math2
+%%IncludeFont: Math2
+/Math2 findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+76.062500 14.625000 moveto
+(D) show
+81.875000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math2
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math2
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math2
+%%DocumentFonts: + font Times-Roman
+grestore
+gsave
+.69536 .12439 -61 -19 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+68.625000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+newpath
+.68315 .02976 .01832 0 365.73 arc
+s
+.67399 .02976 m
+.69231 .02976 L
+.68315 .02976 L
+.68315 .03892 L
+.68315 .0206 L
+s
+gsave
+.69536 .04808 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.70757 .03281 m
+.71368 .02976 L
+.70757 .02671 L
+s
+.70147 .02976 m
+.71978 .02976 L
+s
+.6801 .06029 m
+.68315 .05418 L
+.6862 .06029 L
+s
+.68315 .06639 m
+.68315 .04808 L
+s
+.65263 .03281 m
+.65873 .02976 L
+.65263 .02671 L
+s
+.64652 .02976 m
+.66484 .02976 L
+s
+.68315 .01145 Mdot
+.53663 .02976 m
+.64652 .02976 L
+s
+.71978 .02976 m
+.75641 .02976 L
+s
+.68315 .28617 m
+.68315 .17628 L
+s
+.82967 .21291 m
+.82967 .2587 L
+.85714 .2587 L
+.85714 .31364 L
+.8022 .31364 L
+.8022 .2587 L
+.85714 .2587 L
+.85714 .31364 L
+.82967 .31364 L
+.82967 .35943 L
+s
+.83425 .32738 m
+.82967 .31822 L
+.82509 .32738 L
+s
+gsave
+.8663 .28617 -61 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+65.500000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.82967 .28617 -71 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(z) show
+68.625000 14.625000 moveto
+%%IncludeResource: font Times-Italic
+%%IncludeFont: Times-Italic
+/Times-Italic findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Italic
+%%DocumentNeededFonts: Times-Italic
+%%DocumentFonts: font Times-Italic
+grestore
+gsave
+.82967 .28617 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Math1
+%%IncludeFont: Math1
+/Math1 findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(-) show
+68.750000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(1) show
+75.562500 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 9.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Math1
+%%DocumentNeededResources: + font Times-Roman
+%%DocumentNeededFonts: Math1
+%%DocumentNeededFont: + Times-Roman
+%%DocumentFonts: font Math1
+%%DocumentFonts: + font Times-Roman
+grestore
+.71978 .35943 m
+.82967 .35943 L
+s
+.71978 .21291 m
+.82967 .21291 L
+s
+3 Mabswid
+.71978 .35943 Mdot
+gsave
+.71978 .36126 -67 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(4) show
+70.375000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.68315 .17628 Mdot
+gsave
+.6859 .17628 -61 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(15) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.68315 .06639 Mdot
+gsave
+.6804 .06639 -78 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(18) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+.75641 .02976 Mdot
+gsave
+.75824 .03159 -61 -4 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+(19) show
+75.250000 14.625000 moveto
+%%IncludeResource: font Times-Roman
+%%IncludeFont: Times-Roman
+/Times-Roman findfont 10.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Roman
+%%DocumentNeededFonts: Times-Roman
+%%DocumentFonts: font Times-Roman
+grestore
+gsave
+.97619 .35943 -66.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 11.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+69.250000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Bold
+%%DocumentNeededFonts: Times-Bold
+%%DocumentFonts: font Times-Bold
+grestore
+gsave
+.02381 .35943 -66.5 -11.5 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 23 translate 1 -1 scale
+63.000000 14.625000 moveto
+%%IncludeResource: font Times-Bold
+%%IncludeFont: Times-Bold
+/Times-Bold findfont 11.000000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000000 0.000000 0.000000 setrgbcolor
+0.000000 0.000000 rmoveto
+69.250000 14.625000 moveto
+0.000000 0.000000 rmoveto
+1.000000 setlinewidth
+%%DocumentNeededResources: font Times-Bold
+%%DocumentNeededFonts: Times-Bold
+%%DocumentFonts: font Times-Bold
+grestore
+0 0 m
+1 0 L
+1 .48077 L
+0 .48077 L
+closepath
+clip
+newpath
+% End of Graphics
+MathPictureEnd
+\
+\>"], "Graphics",
+  ImageSize->{531, 255.188},
+  ImageMargins->{{43, 0}, {0, 0}},
+  ImageRegion->{{0, 1}, {0, 1}},
+  ImageCache->GraphicsData["Bitmap", "\<\
+CF5dJ6E]HGAYHf4PAg9QL6QYHg<PAVmbKF5d0`40008C0000oaP00`40o`000?l0003ooooooooooolE
+oooo003ooooooooooaGoool00?oooooooooo5Oooo`00oooooooooolEoooo003ooooooooooaGoool0
+0?oooooooooo5Oooo`00Yoooo`<0001Moooo0`0005koool20000ZOooo`00YOooo`800003oooo1000
+05Ooool200000oooo`@0001Hoooo0P0000;oool40000YOooo`00Xoooo`800009oooo00<0003ooooo
+ool0Doooo`030000oooooooo00Ooool00`000?ooooooo`1Coooo0P0000Soool00`000?ooooooo`2R
+oooo002Roooo00<0003oooooool02_ooo`030000oooooooo053oool200002oooo`030000oooooooo
+053oool200002oooo`030000oooooooo0:7oool00:7oool00`000?ooooooo`0<oooo00<0003ooooo
+ool0C_ooo`030000oooooooo00coool00`000?ooooooo`1>oooo00<0003oooooool03?ooo`030000
+oooooooo0:3oool00:3oool00`000?ooooooo`05oooo00<0003oooooool01_ooo`030000oooooooo
+04coool00`000?ooooooo`06oooo00<0003oooooool01Oooo`030000oooooooo04coool00`000?oo
+ooooo`06oooo00<0003oooooool01Oooo`030000oooooooo02Soool30000M?ooo`00X?ooo`030000
+oooooooo00Goool00`000?ooooooo`06oooo00<0003oooooool0C?ooo`030000oooooooo00Koool0
+0`000?ooooooo`06oooo00<0003oooooool0Boooo`030000oooooooo00Koool00`000?ooooooo`06
+oooo00<0003oooooool09_ooo`040000oooooooooooo0P0000_oool200000oooo`800007oooo0P00
+05Ooool009ooool00`000?ooooooo`06oooo00<0003oooooool01_ooo`030000oooooooo04_oool0
+0`000?ooooooo`07oooo00<0003oooooool01_ooo`030000oooooooo04[oool00`000?ooooooo`07
+oooo00<0003oooooool01_ooo`030000oooooooo02Goool00`000?ooooooo`04oooo00<0003ooooo
+ool02Oooo`050000oooooooooooo000000Woool00`000?ooooooo`1Eoooo002Hoooo00<0003ooooo
+ool01?ooo`030000oooooooo00Koool00`000?ooooooo`07oooo00@0003oooooool00012oooo00<0
+003oooooool01?ooo`030000oooooooo00Ooool00`000?ooooooo`06oooo00@0003oooooool00013
+oooo00<0003oooooool00oooo`030000oooooooo00Ooool00`000?ooooooo`06oooo00D0003ooooo
+ooooool000008_ooo`030000oooooooo00Koool00`000?ooooooo`09oooo00D0003oooooool0003o
+ool00`000003oooo0000000000;oool00`000?ooooooo`1Eoooo002Ioooo0P0000Coool00`000?oo
+ooooo`06oooo00<0003oooooool01oooo`040000oooooooooooo0P00047oool200001?ooo`030000
+oooooooo00Ooool00`000?ooooooo`06oooo00@0003oooooooooool20000@_ooo`800003oooo00<0
+003oooooool01oooo`030000oooooooo00Koool00`000?ooooooo`02oooo0P00023oool00`000?oo
+ooooo`06oooo00<0003oooooool02Oooo`040000oooooooo00000_ooo`040000oooooooo00000ooo
+o`030000oooooooo05Goool004SooomH00000oooo`/00004ooooCP0000Coool:00001?ooodh00004
+oooo2`0000?ooolX00002Oooo`030000oooooooo00Ooool01@000?ooo`000?ooo`000002oooo00@0
+003oooooool00003oooo00<0003oooooool0EOooo`00B?ooo`030000oooooooo04koool200001?oo
+o`030000oooooooo00Koool00`000?ooooooo`07oooo00@0003oooooooooool20000@_ooo`800003
+oooo00<0003oooooool01oooo`030000oooooooo00Koool00`000?ooooooo`02oooo0P00047oool2
+00000oooo`030000oooooooo00Ooool00`000?ooooooo`06oooo00<0003oooooool00_ooo`80000P
+oooo00<0003oooooool01_ooo`030000oooooooo00Ooool01P000?ooooooo`000?ooo`0000;oool2
+000000?oool0003oool00_ooo`030000oooooooo05Goool004Soool00`000?ooooooo`1=oooo00<0
+003oooooool01?ooo`030000oooooooo00Koool00`000?ooooooo`07oooo00@0003oooooool00012
+oooo0P0000Goool00`000?ooooooo`07oooo00<0003oooooool01_ooo`030000oooooooo00800012
+oooo00<0003oooooool01?ooo`030000oooooooo00Koool00`000?ooooooo`06oooo00D0003ooooo
+ooooool000008_ooo`030000oooooooo00Koool00`000?ooooooo`06oooo0P000003oooo00000000
+008000001Oooo`0000000?ooo`000004oooo00<0003oooooool0EOooo`00B?ooo`030000oooooooo
+05Coool00`000?ooooooo`06oooo00<0003oooooool01_ooo`030000oooooooo04_oool00`000?oo
+ooooo`07oooo00<0003oooooool01Oooo`030000oooooooo04coool00`000?ooooooo`06oooo00<0
+003oooooool01_ooo`030000oooooooo02Goool00`000?ooooooo`04oooo00<0003oooooool03Ooo
+o`030000oooooooo00Ooool00`000?ooooooo`1Eoooo0018oooo00<0003oooooool0EOooo`030000
+oooooooo00Goool00`000?ooooooo`06oooo00<0003oooooool0C?ooo`030000oooooooo00Koool0
+0`000?ooooooo`05oooo00<0003oooooool0COooo`030000oooooooo00Goool00`000?ooooooo`06
+oooo00<0003oooooool09_ooo`800002oooo0P00013oool200001oooo`80001Goooo0018oooo00<0
+003oooooool0EOooo`030000oooooooo00Goool00`000?ooooooo`05oooo00<0003oooooool0COoo
+o`030000oooooooo00Koool00`000?ooooooo`04oooo00<0003oooooool0C_ooo`030000oooooooo
+00Goool00`000?ooooooo`05oooo00<0003oooooool0:Oooo`80001doooo0018oooo00<0003ooooo
+ool0E_ooo`030000oooooooo00_oool00`000?ooooooo`0=oooo0`0000;oool20000>oooo`030000
+oooooooo00_oool00`000?ooooooo`0>oooo0`0000;oool00`000?ooooooo`0joooo00<0003ooooo
+ool02oooo`030000oooooooo023oool3000000?oool000000000N_ooo`00B?ooo`030000oooooooo
+05Koool00`000?ooooooo`0;oooo00<0003oooooool03_ooo`040000oooooooo00000_ooo`030000
+oooooooo03Soool00`000?ooooooo`0;oooo00<0003oooooool03oooo`050000oooooooooooo0000
+03coool00`000?ooooooo`0:oooo00<0003oooooool08_ooo`030000oooooooo00;oool00`000?oo
+ooooo`1goooo0018oooo00<0003oooooool0Eoooo`800009oooo0P00017oool010000?ooooooo`00
+00;oool00`000?ooooooo`0ioooo0P0000[oool00`000?ooooooo`0@oooo00<0003oooooool00_oo
+o`030000oooooooo03[oool00`000?ooooooo`08oooo00<0003oooooool08oooo`040000oooooooo
+oooo0`0007Soool004Soool00`000?ooooooo`1Ioooo0`0000?oool300004oooo`040000oooooooo
+00000_ooo`030000oooooooo03_oool300000oooo`@0000Coooo00<0003oooooool00_ooo`030000
+oooooooo03_oool400000_ooo`@0000Voooo00@0003oooooool00002oooo00<0003oooooool0M_oo
+o`00B?ooo`030000oooooooo05coool300005_ooo`030000oooooooo00<00011oooo0`0001Ooool0
+0`000?ooooooo`02oooo00<0003oooooool0?oooo`80000Zoooo00@0003oooooool00002oooo00<0
+003oooooool0M_ooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`0Eoooo00D0003ooooo
+ooooool00000A?ooo`030000oooooooo01Goool010000?ooooooo`0000;oool00`000?ooooooo`0o
+oooo00<0003oooooool0:?ooo`040000oooooooo00000_ooo`030000oooooooo07Koool004Soool0
+0`000?ooooooo`1Moooo00<0003oooooool05?ooo`800004oooo0P0004;oool00`000?ooooooo`0D
+oooo0P0000?oool30000@Oooo`030000oooooooo02Ooool200000oooo`80001ioooo0018oooo00<0
+003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003oooooool0Yooo
+o`00B?ooo`030000oooooooo05goool20000G_ooo`80001Noooo0P000:Woool004Soool00`000?oo
+ooooo`1Loooo0`0005koool30000GOooo`<0002Xoooo0018oooo00<0003oooooool0G?ooo`800000
+0oooo`000?ooo`1Koooo00@0003oool00000001Loooo00@0003oool00000002Xoooo000ioooo0`00
+00;oool300001oooo`030000oooooooo04koool3000000?oool0000000000P0000Ooool00`000?oo
+ooooo`1>oooo0`000004oooo0000000000002Oooo`030000oooooooo04goool300000_ooo`800009
+oooo00<0003oooooool0Yoooo`00>_ooo`030000oooooooo00;oool00`000?ooooooo`06oooo00<0
+003oooooool0Coooo`070000oooooooooooo0000oooo000000Ooool00`000?ooooooo`1?oooo00<0
+003oooooool00oooo`030000oooooooo00Koool00`000?ooooooo`1>oooo00@0003oooooool00002
+oooo00<0003oooooool01_ooo`030000oooooooo0:Ooool003[oool00`000?ooooooo`02oooo00<0
+003oooooool01Oooo`80001Aoooo00<0003oooooool00_ooo`030000oooooooo00Goool20000DOoo
+o`030000oooooooo00?oool00`000?ooooooo`05oooo0P00053oool010000?ooooooo`0000;oool0
+0`000?ooooooo`05oooo0P000:Woool003[oool00`000?ooooooo`02oooo00<0003oooooool01_oo
+o`030000oooooooo04ooool00`000?ooooooo`03oooo00<0003oooooool01Oooo`030000oooooooo
+04ooool010000?ooooooooooo`800009oooo00<0003oooooool0C_ooo`040000oooooooooooo0P00
+00Woool00`000?ooooooo`2Woooo000joooo00<0003oooooool00_ooo`030000oooooooo00Koool0
+0`000?ooooooo`1?oooo00<0003oooooool00oooo`030000oooooooo00Goool00`000?ooooooo`1?
+oooo00<0003oooooool00_ooo`030000oooooooo00Ooool00`000?ooooooo`1>oooo00@0003ooooo
+ool00002oooo00<0003oooooool01_ooo`030000oooooooo0:Ooool003[oool00`000?ooooooo`02
+oooo00<0003oooooool01_ooo`030000oooooooo04ooool010000?ooooooo`0000;oool00`000?oo
+ooooo`05oooo00<0003oooooool0Coooo`030000oooooooo00?oool00`000?ooooooo`06oooo00<0
+003oooooool0C_ooo`040000oooooooo00000_ooo`030000oooooooo00Koool00`000?ooooooo`2W
+oooo000ioooo0P0000?oool200002?ooo`030000oooooooo00[oool200001oooo`80000ioooo0P00
+00?oool200002?ooo`030000oooooooo00_oool200001oooo`80000hoooo0P0000;oool300002Ooo
+o`030000oooooooo00[oool200001oooo`80000hoooo0P0000?oool200002Oooo`030000oooooooo
+00[oool200001oooo`80002Boooo0018oooo00<0003oooooool02_ooo`030000oooooooo00Ooool0
+0`000?ooooooo`16oooo00<0003oooooool02oooo`030000oooooooo00Ooool00`000?ooooooo`16
+oooo00<0003oooooool02_ooo`030000oooooooo00Ooool00`000?ooooooo`16oooo00<0003ooooo
+ool02_ooo`030000oooooooo00Ooool00`000?ooooooo`2@oooo0018oooo00<0003oooooool01?oo
+o`<000001?ooo`000000000000Coool200000oooo`030000oooooooo04Koool00`000?ooooooo`05
+oooo0`000004oooo0000000000000oooo`<00003oooo00<0003oooooool0A_ooo`030000oooooooo
+00Coool3000000Coool0000000000002oooo100000?oool00`000?ooooooo`16oooo00<0003ooooo
+ool01?ooo`<000001?ooo`000000000000;oool300001?ooo`030000oooooooo093oool004Soool0
+0`000?ooooooo`05oooo00H0003oooooool0003oool00003oooo00@0003oooooool00002oooo00<0
+003oooooool0A_ooo`030000oooooooo00Koool01P000?ooooooo`000?ooo`0000Coool00`000?oo
+ooooo`02oooo00<0003oooooool0A_ooo`030000oooooooo00Goool01P000?ooooooo`000?ooo`00
+00?oool00`000?ooo`000003oooo00<0003oooooool0A_ooo`030000oooooooo00Goool01P000?oo
+ooooo`000?ooo`0000Goool01@000?ooooooooooo`00002Boooo0018oooo00<0003oooooool01Ooo
+o`060000oooooooo0000oooo00000oooo`040000oooooooo00000_ooo`030000oooooooo04Koool0
+0`000?ooooooo`06oooo00H0003oooooool0003oool00004oooo00<0003oooooool00_ooo`030000
+oooooooo04Koool00`000?ooooooo`05oooo00H0003oooooool0003oool00004oooo00<0003ooooo
+ool00_ooo`030000oooooooo04Koool00`000?ooooooo`05oooo00H0003oooooool0003oool00005
+oooo00D0003oooooooooool00000T_ooo`00B?ooo`030000oooooooo00Goool2000000Coool0003o
+ool00003oooo00@0003oooooool00002oooo00<0003oooooool0A_ooo`030000oooooooo00Koool2
+000000Coool0003oool00004oooo00<0003oooooool00_ooo`030000oooooooo04Koool00`000?oo
+ooooo`05oooo0P000004oooo0000oooo00001Oooo`050000oooooooooooo000004Soool00`000?oo
+ooooo`05oooo0P000004oooo0000oooo00000oooo`800004oooo00<0003oooooool0T?ooo`00B?oo
+o`030000oooooooo00Goool00`000?ooo`000002oooo00D0003oooooooooool000000_ooo`040000
+oooooooo0000B?ooo`030000oooooooo00Koool00`000?ooo`000002oooo00<0003oooooool00_oo
+o`030000oooooooo00;oool00`000?ooooooo`16oooo00<0003oooooool01Oooo`030000oooo0000
+00;oool00`000?ooooooo`03oooo00D0003oooooooooool00000B?ooo`030000oooooooo00Goool0
+0`000?ooo`000002oooo00<0003oooooool00_ooo`030000oooooooo00;oool00`000?ooooooo`2@
+oooo0018oooo00<0003oooooool01Oooo`030000oooooooo00;oool01@000?ooooooooooo`000002
+oooo00@0003oooooool00018oooo00<0003oooooool01_ooo`030000oooooooo00;oool00`000?oo
+ooooo`02oooo00<0003oooooool00_ooo`030000oooooooo04Koool00`000?ooooooo`05oooo00<0
+003oooooool00_ooo`040000oooooooo00000_ooo`050000oooooooooooo000004Soool00`000?oo
+ooooo`05oooo00<0003oooooool00_ooo`030000oooooooo00?oool01@000?ooooooooooo`00002B
+oooo0018oooo00<0003oooooool01?ooo`800004oooo0P0000?oool200000_ooo`800018oooo00<0
+003oooooool01Oooo`800004oooo0P0000;oool200000oooo`800018oooo00<0003oooooool01?oo
+o`800004oooo0P0000;oool200000oooo`800018oooo00<0003oooooool01?ooo`800004oooo0P00
+0004oooo0000000000000oooo`80002Boooo0018oooo00<0003oooooool0GOooo`030000oooooooo
+05koool00`000?ooooooo`1Moooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo05goool0
+0`000?ooooooo`1Noooo00<0003oooooool0GOooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`2Woooo0018
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0Yoooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool004Soool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000
+oooooooo05goool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0GOooo`030000oooooooo
+05koool00`000?ooooooo`1Moooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo05goool0
+0`000?ooooooo`1Noooo00<0003oooooool0GOooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`2Woooo0018
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0Yoooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool004Ooool00`000?ooo`00001Moooo00<0003oool00000G_ooo`030000
+oooo000005goool00`000?ooo`00002Xoooo0016oooo00D0003oooooooooool00000G?ooo`040000
+oooooooo0000G?ooo`040000oooooooo0000G?ooo`040000oooooooo0000Z?ooo`00A_ooo`050000
+oooooooooooo000005_oool01@000?ooooooooooo`00001Loooo00D0003oooooooooool00000Fooo
+o`050000oooooooooooo00000:Ooool004Goool00`000?ooooooo`03oooo00<0003oooooool0Eooo
+o`030000oooooooo00?oool00`000?ooooooo`1Hoooo00<0003oooooool00oooo`030000oooooooo
+05Ooool00`000?ooooooo`03oooo00<0003oooooool0Y?ooo`00A?ooo`030000oooooooo00Goool0
+0`000?ooooooo`1Foooo00<0003oooooool01?ooo`030000oooooooo05Koool00`000?ooooooo`04
+oooo00<0003oooooool0E_ooo`030000oooooooo00Coool00`000?ooooooo`2Toooo0013oooo00<0
+003oooooool01oooo`030000oooooooo05Coool00`000?ooooooo`06oooo00<0003oooooool0E?oo
+o`030000oooooooo00Koool00`000?ooooooo`1Doooo00<0003oooooool01_ooo`030000oooooooo
+0:?oool004?oool00`000?ooooooo`07oooo00<0003oooooool0Doooo`030000oooooooo00Ooool0
+0`000?ooooooo`1Doooo00<0003oooooool01oooo`030000oooooooo05?oool00`000?ooooooo`07
+oooo00<0003oooooool0X_ooo`00@_ooo`030000oooooooo00Woool00`000?ooooooo`1Aoooo00<0
+003oooooool02Oooo`030000oooooooo05;oool00`000?ooooooo`09oooo00<0003oooooool0DOoo
+o`030000oooooooo00Woool00`000?ooooooo`2Qoooo0011oooo00<0003oooooool02oooo`030000
+oooooooo053oool00`000?ooooooo`0:oooo00<0003oooooool0D?ooo`030000oooooooo00[oool0
+0`000?ooooooo`1@oooo00<0003oooooool02_ooo`030000oooooooo0:7oool0043oool00`000?oo
+ooooo`0=oooo00<0003oooooool0C_ooo`030000oooooooo00coool00`000?ooooooo`1>oooo00<0
+003oooooool03?ooo`030000oooooooo04koool00`000?ooooooo`0<oooo00<0003oooooool0X?oo
+o`00@?ooo`030000oooooooo00goool00`000?ooooooo`1=oooo00<0003oooooool03Oooo`030000
+oooooooo04koool00`000?ooooooo`0=oooo00<0003oooooool0COooo`030000oooooooo00goool0
+0`000?ooooooo`2Ooooo000ooooo00<0003oooooool03oooo`030000oooooooo04coool00`000?oo
+ooooo`0>oooo00<0003oooooool0C?ooo`030000oooooooo00koool00`000?ooooooo`1<oooo00<0
+003oooooool03_ooo`030000oooooooo09ooool003kooolE0000C?oooa@0001<oooo500004cooolD
+0000X?ooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool004Soool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000
+oooooooo05goool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0GOooo`030000oooooooo
+05koool00`000?ooooooo`1Moooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo05goool0
+0`000?ooooooo`1Noooo00<0003oooooool0GOooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`2Woooo0018
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0Yoooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool004Soool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000
+oooooooo05goool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0GOooo`030000oooooooo
+05koool00`000?ooooooo`1Moooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo05goool0
+0`000?ooooooo`1Noooo00<0003oooooool0GOooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`2Woooo0018
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0Yoooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool004Soool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000
+oooooooo05goool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0GOooo`030000oooooooo
+05koool00`000?ooooooo`1Moooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo05goool0
+0`000?ooooooo`1Noooo00<0003oooooool0GOooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`2Woooo0018
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0Yoooo`00B?ooo`030000oooooooo05goool00`000?ooooooo`1Noooo00<0003oooooool0GOoo
+o`030000oooooooo0:Ooool003koool200002?ooo`030000oooooooo05goool010000?oooooooooo
+o`80001Koooo00@0003oooooooooool300000_ooo`80001Eoooo00@0003oooooooooool3000000Co
+ool000000000002Ooooo000moooo00@0003oooooool00007oooo00<0003oooooool0GOooo`030000
+oooooooo00?oool00`000?ooooooo`1Hoooo00<0003oooooool00_ooo`040000oooooooo00000_oo
+o`030000oooooooo05;oool00`000?ooooooo`02oooo00<0003oooooool00oooo`030000oooooooo
+09coool003goool010000?ooooooo`0000Koool20000G_ooo`800004oooo0`0005Soool200001?oo
+o`040000oooooooo00000_ooo`030000oooooooo057oool200001?ooo`030000oooooooo00?oool0
+0`000?ooooooo`2Loooo000noooo0P0000Soool00`000?ooooooo`1Moooo00D0003oooooooooool0
+00000_ooo`030000oooooooo05Ooool00`000?ooooooo`02oooo00@0003oooooool00002oooo00<0
+003oooooool0D_ooo`030000oooooooo00;oool00`000?ooooooo`03oooo00<0003oooooool0W?oo
+o`00?Oooo`040000oooooooo00001oooo`030000oooooooo05goool01@000?ooooooooooo`000002
+oooo00<0003oooooool0Eoooo`030000oooooooo00;oool010000?ooooooo`0000;oool00`000?oo
+ooooo`1Boooo00<0003oooooool00_ooo`040000oooooooooooo0P0009ooool003goool010000?oo
+ooooo`0000Ooool00`000?ooooooo`1Moooo00D0003oooooooooool000000_ooo`030000oooooooo
+05Ooool00`000?ooooooo`02oooo00@0003oooooool00002oooo00<0003oooooool0D_ooo`030000
+oooooooo00;oool01@000?ooooooooooo`00002Poooo000noooo0P0000Soool00`000?ooooooo`1M
+oooo00<0003oooooool00_ooo`80001Joooo00@0003oooooooooool200000oooo`80001Eoooo00@0
+003oooooooooool200001?ooo`80002Noooo0018oooo00<0003oooooool0<_oooah0000=oooo00<0
+003oooooool0<_oooah0000>oooo00<0003oooooool0<Ooooah0000>oooo00<0003oooooool0Yooo
+o`00B?ooo`030000oooooooo03;oool00`000?ooooooo`0Joooo00<0003oooooool02oooo`030000
+oooooooo03;oool00`000?ooooooo`0Joooo00<0003oooooool03?ooo`030000oooooooo037oool0
+0`000?ooooooo`0Joooo00<0003oooooool03?ooo`030000oooooooo0:Ooool004Soool00`000?oo
+ooooo`0boooo00<0003oooooool06_ooo`030000oooooooo00_oool00`000?ooooooo`0boooo00<0
+003oooooool06_ooo`030000oooooooo00coool00`000?ooooooo`0aoooo00<0003oooooool06_oo
+o`030000oooooooo00coool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0<_ooo`030000
+oooooooo01[oool00`000?ooooooo`0;oooo00<0003oooooool0<_ooo`030000oooooooo01[oool0
+0`000?ooooooo`0<oooo00<0003oooooool0<Oooo`030000oooooooo01[oool00`000?ooooooo`0<
+oooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo03;oool00`000?ooooooo`0Joooo00<0
+003oooooool02oooo`030000oooooooo03;oool00`000?ooooooo`0Joooo00<0003oooooool03?oo
+o`030000oooooooo037oool00`000?ooooooo`0Joooo00<0003oooooool03?ooo`030000oooooooo
+0:Ooool004Soool00`000?ooooooo`0boooo00<0003oooooool06_ooo`030000oooooooo00_oool0
+0`000?ooooooo`0boooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?ooooooo`0a
+oooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?ooooooo`2Woooo0018oooo00<0
+003oooooool0<_ooo`030000oooooooo01[oool00`000?ooooooo`0;oooo00<0003oooooool0<_oo
+o`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0003oooooool0<Oooo`030000oooooooo
+01[oool00`000?ooooooo`0<oooo00<0003oooooool0Yoooo`00B?ooo`030000oooooooo03;oool0
+0`000?ooooooo`0Joooo00<0003oooooool02oooo`030000oooooooo03;oool00`000?ooooooo`0J
+oooo00<0003oooooool03?ooo`030000oooooooo037oool00`000?ooooooo`0Joooo00<0003ooooo
+ool03?ooo`030000oooooooo0:Ooool004Soool00`000?ooooooo`0boooo00<0003oooooool06_oo
+o`030000oooooooo00_oool00`000?ooooooo`0boooo00<0003oooooool06_ooo`030000oooooooo
+00coool00`000?ooooooo`0aoooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?oo
+ooooo`2Woooo0018oooo00<0003oooooool0<_ooo`030000oooooooo01[oool00`000?ooooooo`0;
+oooo00<0003oooooool0<_ooo`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0003ooooo
+ool0<Oooo`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0003oooooool0Yoooo`00B?oo
+o`030000oooooooo03;oool00`000?ooooooo`0Joooo00<0003oooooool02oooo`030000oooooooo
+03;oool00`000?ooooooo`0Joooo00<0003oooooool03?ooo`030000oooooooo037oool00`000?oo
+ooooo`0Joooo00<0003oooooool03?ooo`030000oooooooo0:Ooool004Soool00`000?ooooooo`0b
+oooo00<0003oooooool06_ooo`030000oooooooo00_oool00`000?ooooooo`0boooo00<0003ooooo
+ool06_ooo`030000oooooooo00coool00`000?ooooooo`0aoooo00<0003oooooool06_ooo`030000
+oooooooo00coool00`000?ooooooo`2Woooo0018oooo00<0003oooooool0<_ooo`030000oooooooo
+00;oool400005?ooo`030000oooooooo00?oool200001_ooo`030000oooooooo03;oool00`000?oo
+ooooo`03oooo100001?oool00`000?ooooooo`03oooo0P0000Ooool00`000?ooooooo`0aoooo00<0
+003oooooool00oooo`@0000Coooo00<0003oooooool01?ooo`800006oooo00<0003oooooool0Yooo
+o`00B?ooo`030000oooooooo03;oool00`000?ooooooo`03oooo00<0003oool000005?ooo`040000
+oooooooooooo0P0000Soool00`000?ooooooo`0boooo00<0003oooooool01?ooo`030000oooo0000
+01?oool010000?ooooooooooo`800009oooo00<0003oooooool0<Oooo`030000oooooooo00Coool0
+0`000?ooo`00000Coooo00<0003oooooool00_ooo`800008oooo00<0003oooooool0Yoooo`00B?oo
+o`030000oooooooo00oooolT00001_ooo`030000oooooooo01?ooom400001oooo`030000oooooooo
+01;ooom400001oooo`030000oooooooo01;ooomM0000G?ooo`00B?ooo`030000oooooooo013oool0
+0`000?ooooooo`0Ooooo00<0003oooooool00oooo`030000oooo000001Coool00`000?ooooooo`02
+00002Oooo`030000oooooooo013oool00`000?ooooooo`0Ooooo00<0003oooooool01?ooo`030000
+oooo000001?oool00`000?ooooooo`0200002_ooo`030000oooooooo013oool00`000?ooooooo`0N
+oooo00<0003oooooool01?ooo`030000oooo000001?oool010000?ooooooooooo`800009oooo00<0
+003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003ooooo
+ool04?ooo`030000oooooooo01ooool00`000?ooooooo`03oooo100001?oool00`000?ooooooo`02
+oooo0P0000Ooool00`000?ooooooo`0@oooo00<0003oooooool07oooo`030000oooooooo00Coool4
+00004_ooo`030000oooooooo00;oool200002?ooo`030000oooooooo013oool00`000?ooooooo`0N
+oooo00<0003oooooool01?ooo`@0000Boooo00<0003oooooool00oooo`800007oooo00<0003ooooo
+ool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?oo
+o`030000oooooooo01ooool00`000?ooooooo`0Joooo00<0003oooooool01?ooo`030000oooooooo
+00Coool00`000?ooooooo`0@oooo00<0003oooooool07oooo`030000oooooooo01[oool00`000?oo
+ooooo`04oooo00<0003oooooool01Oooo`030000oooooooo013oool00`000?ooooooo`0Noooo00<0
+003oooooool06_ooo`030000oooooooo00Goool00`000?ooooooo`04oooo00<0003oooooool04?oo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo01ooool00`000?ooooooo`0Joooo00<0003oooooool02oooo`030000oooooooo013oool0
+0`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?ooooooo`0@
+oooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0003ooooo
+ool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?oo
+o`030000oooooooo01ooool00`000?ooooooo`0Joooo00<0003oooooool02oooo`030000oooooooo
+013oool00`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?oo
+ooooo`0@oooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0
+003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003ooooo
+ool04?ooo`030000oooooooo01ooool00`000?ooooooo`0Doooo0`0000?oool00`000?ooooooo`0;
+oooo00<0003oooooool04?ooo`030000oooooooo01ooool00`000?ooooooo`0Doooo0`0000?oool0
+0`000?ooooooo`0<oooo00<0003oooooool04?ooo`030000oooooooo01koool00`000?ooooooo`0E
+oooo0`0000;oool00`000?ooooooo`0<oooo00<0003oooooool04?ooo`030000oooooooo03Ooool0
+0`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`050000oooooooooooo000001goool0
+0`000?ooooooo`0Eoooo00<0003oooooool00_ooo`030000oooooooo00_oool00`000?ooooooo`0@
+oooo00@0003oooooooooool200007?ooo`030000oooooooo01Goool00`000?ooooooo`02oooo00<0
+003oooooool03?ooo`030000oooooooo013oool00`000?ooooooo`0300006oooo`030000oooooooo
+01Koool01@000?ooooooooooo`00000>oooo00<0003oooooool04?ooo`040000oooooooooooo0`00
+00?oool00`000?ooooooo`0]oooo00<0003oooooool0F_ooo`00B?ooo`030000oooooooo013oool0
+1@000?ooooooooooo`00000Moooo00<0003oooooool03_ooo`@00003oooo00<0003oooooool00_oo
+o`030000oooooooo00_oool00`000?ooooooo`0@oooo00@0003oooooool00002oooo00<0003ooooo
+ool06Oooo`030000oooooooo00ooool400000_ooo`030000oooooooo00;oool00`000?ooooooo`0<
+oooo00<0003oooooool04?ooo`030000oooooooo00?oool00`000?ooooooo`0Hoooo00<0003ooooo
+ool03oooo`@00003oooo00D0003oooooooooool000003_ooo`030000oooooooo013oool00`000?oo
+ooooo`02oooo00<0003oooooool00_ooo`030000oooooooo02goool00`000?ooooooo`1Joooo0018
+oooo00<0003oooooool04?ooo`030000oooooooo00;oool00`000?ooooooo`0Joooo00<0003ooooo
+ool05Oooo`030000oooooooo00;oool00`000?ooooooo`0;oooo00<0003oooooool04?ooo`040000
+oooooooo00000_ooo`030000oooooooo01Woool00`000?ooooooo`0Eoooo00<0003oooooool00_oo
+o`030000oooooooo00coool00`000?ooooooo`0@oooo00<0003oooooool00oooo`030000oooooooo
+01Soool00`000?ooooooo`0Foooo00D0003oooooooooool000003_ooo`030000oooooooo013oool0
+0`000?ooooooo`02oooo00<0003oooooool0100002koool00`000?ooooooo`1Joooo0018oooo00<0
+003oooooool04?ooo`030000oooooooo00;oool00`000?ooooooo`0Joooo00<0003oooooool05Ooo
+o`030000oooooooo00;oool00`000?ooooooo`0;oooo00<0003oooooool04?ooo`040000oooooooo
+00000_ooo`030000oooooooo01Woool00`000?ooooooo`0Eoooo00<0003oooooool00_ooo`030000
+oooooooo00coool00`000?ooooooo`0@oooo00<0003oooooool00oooo`030000oooooooo01Soool0
+0`000?ooooooo`0Foooo00D0003oooooooooool000003_ooo`030000oooooooo013oool00`000?oo
+ooooo`02oooo00H0003oooooool0003oool0000_oooo00<0003oooooool0F_ooo`00B?ooo`030000
+oooooooo013oool00`000?ooooooo`02oooo00<0003oooooool06_ooo`030000oooooooo01Goool0
+0`000?ooooooo`02oooo00<0003oooooool02oooo`030000oooooooo013oool00`000?ooooooo`03
+00007?ooo`030000oooooooo01Goool00`000?ooooooo`02oooo00<0003oooooool03?ooo`030000
+oooooooo013oool010000?ooooooooooo`80000Koooo00<0003oooooool05_ooo`050000oooooooo
+oooo000000koool00`000?ooooooo`0@oooo00<0003oooooool00_ooo`040000oooooooooooo0P00
+02ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`040000oooooooo00000_oo
+o`030000oooooooo01Woool00`000?ooooooo`0Doooo0P0000Coool00`000?ooooooo`0;oooo00<0
+003oooooool04?ooo`050000oooooooooooo000001goool00`000?ooooooo`0Doooo0P0000Coool0
+0`000?ooooooo`0<oooo00<0003oooooool04?ooo`050000oooooooooooo000001coool00`000?oo
+ooooo`0Eoooo0P0000?oool00`000?ooooooo`0<oooo00<0003oooooool04?ooo`030000oooooooo
+00;oool010000?ooooooooooo`80000_oooo00<0003oooooool0F_ooo`00B?ooo`030000oooooooo
+013oool010000?ooooooooooo`<0000Koooo00<0003oooooool06_ooo`030000oooooooo00_oool0
+0`000?ooooooo`0@oooo00<0003oooooool00_ooo`80000Koooo00<0003oooooool06_ooo`030000
+oooooooo00coool00`000?ooooooo`0@oooo00<0003oooooool00_ooo`80000Joooo00<0003ooooo
+ool06_ooo`030000oooooooo00coool00`000?ooooooo`0@oooo00@0003oooooooooool200001?oo
+o`030000oooooooo02goool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo01ooool00`000?ooooooo`0Joooo00<0003oooooool02oooo`030000oooooooo013oool0
+0`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000oooooooo00coool00`000?ooooooo`0@
+oooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0<oooo00<0003ooooo
+ool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?oo
+o`030000oooooooo01oooolN00003Oooo`030000oooooooo013oool00`000?ooooooo`0Ooooo7P00
+00koool00`000?ooooooo`0@oooo00<0003oooooool07_oooah0000>oooo00<0003oooooool04?oo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo04[oool00`000?ooooooo`0@oooo00<0003oooooool0Boooo`030000oooooooo013oool0
+0`000?ooooooo`1:oooo00<0003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1J
+oooo0018oooo00<0003oooooool04?ooo`030000oooooooo04[oool00`000?ooooooo`0@oooo00<0
+003oooooool0Boooo`030000oooooooo013oool00`000?ooooooo`1:oooo00<0003oooooool04?oo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo04[oool00`000?ooooooo`0@oooo00<0003oooooool0Boooo`030000oooooooo013oool0
+0`000?ooooooo`1:oooo00<0003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1J
+oooo0018oooo00<0003oooooool04?ooo`030000oooooooo04[oool00`000?ooooooo`0@oooo00<0
+003oooooool0Boooo`030000oooooooo013oool00`000?ooooooo`1:oooo00<0003oooooool04?oo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo04[oool00`000?ooooooo`0@oooo00<0003oooooool0Boooo`030000oooooooo013oool0
+0`000?ooooooo`1:oooo00<0003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1J
+oooo0018oooo00<0003oooooool04?ooo`030000oooooooo04[oool00`000?ooooooo`0@oooo00<0
+003oooooool0Boooo`030000oooooooo013oool00`000?ooooooo`1:oooo00<0003oooooool04?oo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo0018oooo00<0003oooooool04?ooo`030000
+oooooooo04[oool00`000?ooooooo`0@oooo00<0003oooooool0Boooo`030000oooooooo013oool0
+0`000?ooooooo`1:oooo00<0003oooooool04?ooo`030000oooooooo03Ooool00`000?ooooooo`1J
+oooo0018oooo00<0003oooooool03oooo`8000000oooo`000?ooo`19oooo00<0003oooooool03ooo
+o`8000000oooo`000?ooo`1:oooo00<0003oooooool03_ooo`040000oooo00000000Boooo`030000
+oooooooo00koool01@000?ooo`000?ooo`00000goooo00<0003oooooool0F_ooo`00B?ooo`030000
+oooooooo00ooool30000Boooo`030000oooooooo00ooool30000C?ooo`030000oooooooo00ooool3
+0000Boooo`030000oooooooo00ooool30000:Ooooah0001>oooo0018oooo00<0003oooooool04?oo
+o`80001;oooo00<0003oooooool04?ooo`80001<oooo00<0003oooooool03oooo`80001<oooo00<0
+003oooooool03oooo`<0000Yoooo00<0003oooooool06_ooo`030000oooooooo04coool004Soool0
+0`000?ooooooo`0@oooo00<0003oooooool0B_ooo`030000oooooooo013oool00`000?ooooooo`1;
+oooo00<0003oooooool04?ooo`030000oooooooo04[oool00`000?ooooooo`0@oooo00<0003ooooo
+ool0:?ooo`030000oooooooo01[oool00`000?ooooooo`1<oooo0018oooo00<0003oooooool04?oo
+o`030000oooooooo04[oool00`000?ooooooo`0@oooo00<0003oooooool0Boooo`030000oooooooo
+013oool00`000?ooooooo`1:oooo00<0003oooooool04?ooo`030000oooooooo02Soool00`000?oo
+ooooo`0Joooo00<0003oooooool0C?ooo`00B?ooo`030000oooooooo013oool00`000?ooooooo`1:
+oooo00<0003oooooool04?ooo`030000oooooooo04_oool00`000?ooooooo`0@oooo00<0003ooooo
+ool0B_ooo`030000oooooooo013oool00`000?ooooooo`0Xoooo00<0003oooooool06_ooo`030000
+oooooooo04coool004Soool00`000?ooooooo`0?oooo1@0004Woool00`000?ooooooo`0?oooo1@00
+04[oool00`000?ooooooo`0?oooo100004[oool00`000?ooooooo`0?oooo1@0002Ooool00`000?oo
+ooooo`0Joooo00<0003oooooool0C?ooo`00B?ooo`030000oooooooo00_oool400001Oooo`800017
+oooo00<0003oooooool03?ooo`<00005oooo0P0004Soool00`000?ooooooo`0;oooo100000Coool2
+0000B?ooo`030000oooooooo00_oool400001Oooo`030000oooooooo02Coool00`000?ooooooo`0J
+oooo00<0003oooooool0C?ooo`00B?ooo`030000oooooooo00[oool00`000?ooooooo`09oooo00<0
+003oooooool0A?ooo`030000oooooooo00_oool00`000?ooooooo`08oooo00<0003oooooool0AOoo
+o`030000oooooooo00[oool00`000?ooooooo`08oooo00<0003oooooool0AOooo`030000oooooooo
+00[oool00`000?ooooooo`08oooo00<0003oooooool08oooo`030000oooooooo01[oool00`000?oo
+ooooo`1<oooo0018oooo00<0003oooooool02_ooo`030000oooooooo00[oool00`000?ooooooo`13
+oooo00<0003oooooool02_ooo`030000oooooooo00[oool00`000?ooooooo`14oooo00<0003ooooo
+ool02Oooo`030000oooooooo00[oool00`000?ooooooo`14oooo00<0003oooooool02_ooo`030000
+oooooooo00Woool00`000?ooooooo`0Roooo00<0003oooooool06_ooo`030000oooooooo04coool0
+04Soool00`000?ooooooo`09oooo00<0003oooooool03?ooo`030000oooooooo04;oool00`000?oo
+ooooo`09oooo00<0003oooooool03?ooo`030000oooooooo04?oool00`000?ooooooo`08oooo00<0
+003oooooool03?ooo`030000oooooooo04?oool00`000?ooooooo`08oooo0P0000goool00`000?oo
+ooooo`0Qoooo00<0003oooooool06_ooo`030000oooooooo04coool004Soool00`000?ooooooo`08
+oooo00<0003oooooool01Oooo`030000oooooooo00Koool00`000?ooooooo`11oooo00<0003ooooo
+ool02?ooo`030000oooooooo00Goool00`000?ooooooo`06oooo00<0003oooooool0@_ooo`030000
+oooooooo00Ooool00`000?ooooooo`06oooo00<0003oooooool01Oooo`030000oooooooo04;oool0
+0`000?ooooooo`07oooo00<0003oooooool01_ooo`030000oooooooo00Goool00`000?ooooooo`0P
+oooo00<0003oooooool06_ooo`030000oooooooo04coool004Soool00`000?ooooooo`08oooo00<0
+003oooooool01Oooo`030000oooooooo00Koool00`000?ooooooo`11oooo00<0003oooooool02?oo
+o`030000oooooooo00Goool00`000?ooooooo`07oooo00<0003oooooool0@Oooo`030000oooooooo
+00Ooool00`000?ooooooo`06oooo00<0003oooooool01_ooo`030000oooooooo047oool00`000?oo
+ooooo`07oooo00<0003oooooool01_ooo`030000oooooooo00Koool00`000?ooooooo`0Ooooo00<0
+003oooooool06_ooo`030000oooooooo04coool004Soool00`000?ooooooo`07oooo00<0003ooooo
+ool01_ooo`030000oooooooo00Koool00`000?ooooooo`11oooo00<0003oooooool01oooo`030000
+oooooooo00Koool00`000?ooooooo`07oooo00<0003oooooool0@Oooo`030000oooooooo00Koool0
+0`000?ooooooo`07oooo00<0003oooooool01_ooo`030000oooooooo047oool00`000?ooooooo`07
+oooo00<0003oooooool01_ooo`030000oooooooo00Koool00`000?ooooooo`0Ooooo00<0003ooooo
+ool06_ooo`030000oooooooo04coool004Soool00`000?ooooooo`03oooo00D0003oooooooooool0
+00002?ooo`030000oooooooo00Ooool00`000?ooooooo`10oooo00<0003oooooool01?ooo`040000
+oooooooo00002?ooo`030000oooooooo00Ooool00`000?ooooooo`11oooo00<0003oooooool00ooo
+o`040000oooooooo00002Oooo`030000oooooooo00Koool00`000?ooooooo`11oooo00<0003ooooo
+ool00oooo`040000oooooooo00002Oooo`030000oooooooo00Ooool00`000?ooooooo`0Noooo00<0
+003oooooool00oooo`@0000Coooo00<0003oooooool0C?ooo`00B?ooo`040000oooooooooooo0P00
+00Coool00`000?ooooooo`06oooo00<0003oooooool01oooo`030000oooooooo043oool00`000?oo
+ooooo`02oooo0P0000?oool00`000?ooooooo`06oooo00<0003oooooool01oooo`030000oooooooo
+047oool010000?ooooooooooo`800003oooo00<0003oooooool01oooo`030000oooooooo00Koool2
+0000@_ooo`040000oooooooooooo0P0000?oool00`000?ooooooo`07oooo00<0003oooooool01ooo
+o`030000oooooooo01koool00`000?ooooooo`04oooo00<0003oool000004oooo`030000oooooooo
+04coool004Soool;00000oooo`/00004oooo00<0003oooooool0@?ooo`/00004oooo2P0000Coool0
+0`000?ooooooo`11oooo2P0000Coool;00000oooo`030000oooooooo047oool;00000oooo`/00004
+oooo00<0003oooooool07_ooo`030000oooooooo00Goool00`000?ooooooo`0Boooo00<0003ooooo
+ool0C?ooo`00COooo`800003oooo00<0003oooooool01_ooo`030000oooooooo00Ooool00`000?oo
+ooooo`15oooo0`0000;oool00`000?ooooooo`06oooo00<0003oooooool01oooo`030000oooooooo
+04Koool200000_ooo`030000oooooooo00Ooool00`000?ooooooo`06oooo00<0003oooooool0A_oo
+o`800003oooo00<0003oooooool01_ooo`030000oooooooo00Koool200008?ooo`030000oooooooo
+00Coool00`000?ooo`00000Coooo00<0003oooooool0C?ooo`00D_ooo`030000oooooooo00Koool0
+0`000?ooooooo`07oooo00<0003oooooool0B_ooo`030000oooooooo00Koool00`000?ooooooo`07
+oooo00<0003oooooool0Boooo`030000oooooooo00Koool00`000?ooooooo`06oooo00<0003ooooo
+ool0Boooo`030000oooooooo00Koool00`000?ooooooo`06oooo00<0003oooooool07oooo`030000
+oooooooo00Coool400004_ooo`030000oooooooo04coool005;oool00`000?ooooooo`06oooo00<0
+003oooooool01_ooo`030000oooooooo04_oool00`000?ooooooo`06oooo00<0003oooooool01_oo
+o`030000oooooooo04coool00`000?ooooooo`06oooo00<0003oooooool01_ooo`030000oooooooo
+04_oool00`000?ooooooo`06oooo00<0003oooooool01_ooo`030000oooooooo01ooool00`000?oo
+ooooo`0Joooo00<0003oooooool0C?ooo`00Doooo`030000oooooooo00Goool00`000?ooooooo`05
+oooo00<0003oooooool0COooo`030000oooooooo00Goool00`000?ooooooo`05oooo00<0003ooooo
+ool0C_ooo`030000oooooooo00Goool00`000?ooooooo`05oooo00<0003oooooool0COooo`030000
+oooooooo00Goool00`000?ooooooo`05oooo00<0003oooooool08?ooo`030000oooooooo01[oool0
+0`000?ooooooo`1<oooo001Coooo00<0003oooooool01Oooo`030000oooooooo00Goool00`000?oo
+ooooo`1=oooo00<0003oooooool01Oooo`030000oooooooo00Goool00`000?ooooooo`1>oooo00<0
+003oooooool01Oooo`030000oooooooo00Goool00`000?ooooooo`1=oooo00<0003oooooool01Ooo
+o`030000oooooooo00Goool00`000?ooooooo`0Poooo00<0003oooooool05Oooo`<00002oooo00<0
+003oooooool0C?ooo`00E?ooo`030000oooooooo00_oool00`000?ooooooo`1?oooo00<0003ooooo
+ool02oooo`030000oooooooo053oool00`000?ooooooo`0;oooo00<0003oooooool0Coooo`030000
+oooooooo00_oool00`000?ooooooo`0Qoooo00<0003oooooool05_ooo`050000oooooooooooo0000
+04koool005Goool00`000?ooooooo`0:oooo00<0003oooooool0D?ooo`030000oooooooo00[oool0
+0`000?ooooooo`1Aoooo00<0003oooooool02Oooo`030000oooooooo057oool00`000?ooooooo`0:
+oooo00<0003oooooool08Oooo`030000oooooooo00ooool400000oooo`050000oooooooooooo0000
+04koool005Koool00`000?ooooooo`07oooo0P0005Coool00`000?ooooooo`08oooo00<0003ooooo
+ool0D_ooo`030000oooooooo00Soool00`000?ooooooo`1Boooo00<0003oooooool02?ooo`80000T
+oooo00<0003oooooool05_ooo`050000oooooooooooo000004koool005Ooool90000Eoooo`X0001F
+oooo2P0005Koool:00009_ooo`030000oooooooo01Koool01@000?ooooooooooo`00001>oooo001K
+oooo00<0003oooooool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003ooooo
+ool0:?ooo`030000oooooooo01Koool01@000?ooooooooooo`00001>oooo001Koooo00<0003ooooo
+ool0GOooo`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003oooooool0:?ooo`030000
+oooooooo01Goool200000oooo`030000oooooooo04coool005_oool00`000?ooooooo`1Moooo00<0
+003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`0Xoooo00<0003oooooool06_oo
+o`030000oooooooo04coool005_oool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000
+oooooooo05goool00`000?ooooooo`0Xoooo00<0003oooooool06_ooo`030000oooooooo04coool0
+05_oool20000G_ooo`80001Noooo0P0005koool30000:Ooooah0001>oooo001Joooo0`0005goool3
+0000G_ooo`<0001Moooo0`0003Soool00`000?ooooooo`1Joooo001Joooo0P000003oooo0000oooo
+05_oool2000000?oool0003oool0Foooo`040000oooo00000000G?ooo`050000oooo0000oooo0000
+03Ooool00`000?ooooooo`1Joooo001Koooo00<0003oooooool0GOooo`030000oooooooo05koool0
+0`000?ooooooo`1Moooo00<0003oooooool0=oooo`030000oooooooo05[oool005_oool00`000?oo
+ooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool00`000?ooooooo`0foooo0`00
+05_oool005_oool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool0
+0`000?ooooooo`0eoooo00@0003oool00000001Koooo001Koooo00<0003oooooool0GOooo`030000
+oooooooo05koool00`000?ooooooo`1Moooo00<0003oooooool0=Oooo`050000oooo0000oooo0000
+05[oool005_oool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool0
+0`000?ooooooo`0doooo00H0003oooooool0003oool0001Joooo001Koooo00<0003oooooool0GOoo
+o`030000oooooooo05koool00`000?ooooooo`1Moooo00<0003oooooool0=oooo`030000oooooooo
+05[oool005_oool00`000?ooooooo`1Moooo00<0003oooooool0G_ooo`030000oooooooo05goool0
+0`000?ooooooo`0goooo00<0003oooooool0F_ooo`00Foooo`030000oooooooo01oooolN00008?oo
+o`030000oooooooo01oooolN00008Oooo`030000oooooooo01kooolN00008Oooo`030000oooooooo
+03Ooool00`000?ooooooo`1Joooo001Koooo00<0003oooooool07oooo`030000oooooooo01[oool0
+0`000?ooooooo`0Noooo00<0003oooooool07oooo`030000oooooooo01[oool00`000?ooooooo`0O
+oooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0Ooooo00<0003ooooo
+ool0=oooo`030000oooooooo05[oool005_oool00`000?ooooooo`0Ooooo00<0003oooooool06_oo
+o`030000oooooooo01koool00`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000oooooooo
+01ooool00`000?ooooooo`0Noooo00<0003oooooool06_ooo`030000oooooooo01ooool00`000?oo
+ooooo`0goooo00<0003oooooool0F_ooo`00Foooo`030000oooooooo01ooool00`000?ooooooo`0J
+oooo00<0003oooooool07_ooo`030000oooooooo01ooool00`000?ooooooo`0Joooo00<0003ooooo
+ool07oooo`030000oooooooo01koool00`000?ooooooo`0Joooo00<0003oooooool07oooo`030000
+oooooooo03Ooool00`000?ooooooo`1Joooo001Koooo00<0003oooooool07oooo`030000oooooooo
+01[oool00`000?ooooooo`0Noooo00<0003oooooool07oooo`030000oooooooo01[oool00`000?oo
+ooooo`0Ooooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0Ooooo00<0
+003oooooool0=oooo`030000oooooooo05[oool005_oool00`000?ooooooo`0Ooooo00<0003ooooo
+ool06_ooo`030000oooooooo01koool00`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000
+oooooooo01ooool00`000?ooooooo`0Noooo00<0003oooooool06_ooo`030000oooooooo01ooool0
+0`000?ooooooo`0goooo00<0003oooooool0F_ooo`00Foooo`030000oooooooo01ooool00`000?oo
+ooooo`0Joooo00<0003oooooool07_ooo`030000oooooooo01ooool00`000?ooooooo`0Joooo00<0
+003oooooool07oooo`030000oooooooo01koool00`000?ooooooo`0Joooo00<0003oooooool07ooo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo001Koooo00<0003oooooool07oooo`030000
+oooooooo01[oool00`000?ooooooo`0Noooo00<0003oooooool07oooo`030000oooooooo01[oool0
+0`000?ooooooo`0Ooooo00<0003oooooool07_ooo`030000oooooooo01[oool00`000?ooooooo`0O
+oooo00<0003oooooool0=oooo`030000oooooooo05[oool005_oool00`000?ooooooo`0Ooooo00<0
+003oooooool06_ooo`030000oooooooo01koool00`000?ooooooo`0Ooooo00<0003oooooool06_oo
+o`030000oooooooo01ooool00`000?ooooooo`0Noooo00<0003oooooool06_ooo`030000oooooooo
+01ooool00`000?ooooooo`0goooo00<0003oooooool0F_ooo`00>_ooo`030000oooooooo01koool0
+0`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000oooooooo01koool00`000?ooooooo`0O
+oooo00<0003oooooool06_ooo`030000oooooooo01ooool00`000?ooooooo`0Noooo00<0003ooooo
+ool06_ooo`030000oooooooo01ooool00`000?ooooooo`0goooo00<0003oooooool0F_ooo`007Ooo
+o`800008oooo0P0000ooool2000000?oool0000000007_ooo`030000oooooooo01ooool00`000?oo
+ooooo`0Joooo00<0003oooooool07_ooo`030000oooooooo01ooool00`000?ooooooo`0Joooo00<0
+003oooooool07oooo`030000oooooooo01koool00`000?ooooooo`0Joooo00<0003oooooool07ooo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo000Moooo00<0003oooooool02?ooo`030000
+oooooooo00_oool200001Oooo`030000oooooooo01_oool00`000?ooooooo`0Ooooo00<0003ooooo
+ool06_ooo`030000oooooooo01koool00`000?ooooooo`0Ooooo00<0003oooooool06_ooo`030000
+oooooooo01ooool00`000?ooooooo`0Noooo00<0003oooooool06_ooo`030000oooooooo01ooool0
+0`000?ooooooo`0goooo00<0003oooooool0F_ooo`006?ooo`8000001?ooo`000000000000;oool3
+000000?oool0000000000_ooo`030000oooooooo00[oool00`000?ooooooo`06oooo00<0003ooooo
+ool06_ooo`030000oooooooo01Soool200001Oooo`030000oooooooo00;oool400005?ooo`030000
+oooooooo01koool00`000?ooooooo`0Hoooo0P0000Goool00`000?ooooooo`03oooo100001?oool0
+0`000?ooooooo`0Ooooo00<0003oooooool05oooo`800005oooo00<0003oooooool00oooo`@0000C
+oooo00<0003oooooool07oooo`030000oooooooo03Ooool00`000?ooooooo`1Joooo000Ioooo00D0
+003oool0003oool000000oooo`040000oooooooo00000oooo`030000oooooooo00[oool00`000?oo
+ooooo`06oooo00<0003oooooool06_ooo`030000oooooooo01[oool200000oooo`030000oooooooo
+00?oool00`000?ooo`00000Doooo00<0003oooooool07_ooo`030000oooooooo01[oool200000ooo
+o`030000oooooooo00Coool00`000?ooo`00000Coooo00<0003oooooool07oooo`030000oooooooo
+01Woool200000oooo`030000oooooooo00Coool00`000?ooo`00000Coooo00<0003oooooool07ooo
+o`030000oooooooo03Ooool00`000?ooooooo`1Joooo000Joooo00@0003oooooool00003oooo00@0
+003oooooool00003oooo00<0003oooooool02_ooo`030000oooooooo00Kooom000001_ooo`030000
+oooooooo01?ooom400001oooo`030000oooooooo01;ooom400001oooo`030000oooooooo01;ooomM
+0000G?ooo`006Oooo`050000oooo0000oooo000000?oool2000000?oool0003oool00_ooo`030000
+oooooooo00[oool00`000?ooooooo`06oooo00<0003oooooool0>?ooo`800002oooo00<0003ooooo
+ool00oooo`030000oooo000001Coool00`000?ooooooo`0loooo0P0000;oool00`000?ooooooo`04
+oooo00<0003oool000004oooo`030000oooooooo03coool200000_ooo`030000oooooooo00Coool0
+0`000?ooo`00000Coooo00<0003oooooool0]_ooo`006?ooo`8000001?ooo`000000000000;oool2
+000000?oool0003oool00oooo`030000oooooooo00[oool00`000?ooooooo`06oooo00<0003ooooo
+ool0=_ooo`800004oooo00<0003oooooool00oooo`@0000Coooo00<0003oooooool0>_ooo`800004
+oooo00<0003oooooool01?ooo`@0000Boooo00<0003oooooool0>_ooo`800004oooo00<0003ooooo
+ool01?ooo`@0000Boooo00<0003oooooool0]_ooo`007Oooo`030000oooooooo00Soool00`000?oo
+ooooo`0;oooo00<0003oooooool01?ooo`030000oooooooo03Koool00`000?ooooooo`04oooo00<0
+003oooooool06_ooo`030000oooooooo03Woool00`000?ooooooo`04oooo00<0003oooooool06_oo
+o`030000oooooooo03Woool00`000?ooooooo`04oooo00<0003oooooool06_ooo`030000oooooooo
+0;Koool001goool200002?ooo`80000=oooo00<0003oooooool01?ooo`030000oooooooo03goool0
+0`000?ooooooo`0Joooo00<0003oooooool0@?ooo`030000oooooooo01[oool00`000?ooooooo`10
+oooo00<0003oooooool06_ooo`030000oooooooo0;Koool003Ooool60000@?ooo`030000oooooooo
+01[oool00`000?ooooooo`10oooo00<0003oooooool06_ooo`030000oooooooo043oool00`000?oo
+ooooo`0Joooo00<0003oooooool0]_ooo`00OOooo`030000oooooooo01Coool300000oooo`030000
+oooooooo043oool00`000?ooooooo`0Doooo0`0000?oool00`000?ooooooo`10oooo00<0003ooooo
+ool05Oooo`<00002oooo00<0003oooooool0]_ooo`00F?ooo`<0000Roooo00<0003oooooool05Ooo
+o`030000oooooooo00;oool00`000?ooooooo`0Joooo100002;oool00`000?ooooooo`0Eoooo00<0
+003oooooool00_ooo`030000oooooooo01_oool300008_ooo`030000oooooooo01Koool01@000?oo
+ooooooooo`00000Ooooo00<0003oooooool0U_ooo`00FOooo`030000oooooooo027oool00`000?oo
+ooooo`0>oooo100000?oool00`000?ooooooo`02oooo00<0003oooooool06oooo`030000oooo0000
+02;oool00`000?ooooooo`0?oooo100000;oool00`000?ooooooo`02oooo00<0003oooooool07_oo
+o`030000oooooooo01ooool00`000?ooooooo`0?oooo100000?oool01@000?ooooooooooo`00000O
+oooo00<0003oooooool0U_ooo`00FOooo`030000oooooooo027oool00`000?ooooooo`0Eoooo00<0
+003oooooool00_ooo`030000oooooooo01coool00`000?ooooooo`0Qoooo00<0003oooooool05Ooo
+o`030000oooooooo00;oool00`000?ooooooo`0Noooo00<0003oooooool07oooo`030000oooooooo
+01Koool01@000?ooooooooooo`00000Moooo100009Ooool005Woool00`000?ooooooo`0Qoooo00<0
+003oooooool05Oooo`030000oooooooo00;oool00`000?ooooooo`0Moooo00<0003oooooool08?oo
+o`030000oooooooo01Goool00`000?ooooooo`02oooo00<0003oooooool07?ooo`80000Roooo00<0
+003oooooool05_ooo`050000oooooooooooo000001goool00`000?ooo`00002Hoooo001Ioooo00<0
+003oooooool08Oooo`030000oooooooo01Goool00`000?ooooooo`02oooo00<0003oooooool07Ooo
+o`030000oooooooo023oool00`000?ooooooo`0Eoooo00<0003oooooool00_ooo`030000oooooooo
+01goool00`000?ooooooo`0Poooo00<0003oooooool05_ooo`050000oooooooooooo000001koool2
+0000V?ooo`00FOooo`030000oooooooo027oool00`000?ooooooo`0Doooo0P0000Coool00`000?oo
+ooooo`0Joooo00@0003oooooool0000Roooo00<0003oooooool05?ooo`800004oooo00<0003ooooo
+ool07_ooo`030000oooooooo01ooool00`000?ooooooo`0Eoooo0P0000?oool00`000?ooooooo`0L
+oooo0P0009Soool005Soool200008oooo`030000oooooooo01[oool00`000?ooooooo`0Koooo0P00
+02?oool00`000?ooooooo`0Joooo00<0003oooooool06oooo`<0000Roooo00<0003oooooool06_oo
+o`030000oooooooo01goool00`000?ooooooo`2Foooo001moooo00<0003oooooool06_ooo`030000
+oooooooo043oool00`000?ooooooo`0Joooo00<0003oooooool0@?ooo`030000oooooooo01[oool0
+0`000?ooooooo`2foooo001moooo7P0004;ooolN0000@_oooah0002hoooo003ooooooooooaGoool0
+0?oooooooooo5Oooo`00oooooooooolEoooo003ooooooooooaGoool00?oooooooooo5Oooo`00oooo
+oooooolEoooo003ooooooooooaGoool00?oooooooooo5Oooo`00oooooooooolEoooo003ooooooooo
+oaGoool00?oooooooooo5Oooo`00oooooooooolEoooo003ooooooooooaGoool00?oooooooooo5Ooo
+o`00oooooooooolEoooo003ooooooooooaGoool00?oooooooooo5Oooo`00oooooooooolEoooo0038
+oooo0P0000?oool40000oooood?oool00<Soool00`000?ooo`000003oooo0P000?oooom4oooo003:
+oooo00@0003oooooooooool20000ooooodCoool007Ooool400000oooo`P000000oooo`0000000005
+00000_ooo`<00003oooo4P0000;oool5000000?oool0000000001@000004oooo0000000000000_oo
+o`<000001Oooo`00000000000?ooo`0300000oooo`030000oooooooo00@00003oooo0`0000;oool5
+0000ooooocGoool007Soool200001Oooo`800002oooo0P0000;oool200000_ooo`800002oooo0P00
+00;oool01@000?ooo`0000000?ooo`0200000_ooo`800002oooo0P0000;oool2000000?oool0003o
+ool00P000003oooo0000000000;oool200000_ooo`8000001?ooo`0000000?ooo`800002oooo0P00
+0003oooo0000000000;oool200000oooo`800002oooo0P000004oooo00000000oooo0P0000;oool0
+0`000?ooooooo`040000ooooocGoool007Soool200001Oooo`800002oooo0P000003oooo00000000
+00?oool200000_ooo`800005oooo00@0003oool000000002oooo0P0000;oool200000_ooo`800004
+oooo00@0003oool000000002oooo0P0000;oool2000000Coool00000003oool200000_ooo`800000
+0oooo`0000000002oooo0P0000?oool200000_ooo`8000001?ooo`0000000?ooo`800005oooo00<0
+003oooooool0ooooocKoool007Soool2000000?oool0003oool00_ooo`800002oooo0P000003oooo
+0000000000?oool200000_ooo`D00003oooo0`0000;oool200000_ooo`800003oooo0P0000Coool3
+00000_ooo`800002oooo0P000004oooo00000000oooo0P0000;oool2000000?oool0000000000_oo
+o`800002oooo0P000003oooo0000oooo008000001?ooo`0000000?ooo`D00003oooo00<0003ooooo
+ool0ooooocGoool007Soool400000oooo`800002oooo100000Coool2000000Goool000000000003o
+ool00P000004oooo00000000oooo0P0000;oool200000_ooo`8000000oooo`000?ooo`0200000_oo
+o`8000000oooo`0000000002oooo0P0000;oool2000000Coool00000003oool200000_ooo`800000
+0oooo`0000000002oooo0P0000;oool2000000?oool0003oool00P000004oooo00000000oooo0P00
+0003oooo0000000000Coool00`000?ooooooo`3ooooo=?ooo`00N?ooo`8000000oooo`000?ooo`02
+oooo0P0000;oool200000_ooo`8000000oooo`0000000003000000Coool0000000000003oooo0`00
+00?oool2000000Goool000000000003oool01@0000;oool300000_ooo`L00002oooo0`0000;oool5
+00000_ooo`L000000oooo`000000000400000oooo`<00005oooo0P000?ooooleoooo001hoooo0P00
+00Goool200000_ooo`800002oooo0P0001?oool200004oooo`030000oooooooo01;oool00`000?oo
+ooooo`0Aoooo00<0003oooooool00P000?ooooleoooo001hoooo0P0000?oool010000?ooo`000000
+00;oool200000_ooo`80000Coooo0P0000;oool200003oooo`030000oooooooo0080000@oooo00<0
+003oooooool04_ooo`@0003ooooo=Oooo`00Mooooa40000Coooo0`0000;oool200004_ooo`80000U
+oooo0`000?oooolfoooo003ooooooooooaGoool00?oooooooooo5Oooo`00oooooooooolEoooo003o
+oooooooooaGoool00?oooooooooo5Oooo`00oooooooooolEoooo003ooooooooooaGoool00;koool4
+0000oooooe;oool00;ooool20000oooooe?oool00;ooool20000oooooe?oool008ooool>000000Go
+ool000000000003oool00`0000?oool900003_ooo`@00002oooo0`000005oooo000000000000oooo
+00P00003oooo0`000?oooolioooo002@oooo0P0000;oool2000000?oool0000000000_ooo`800000
+1?ooo`0000000?ooo`800002oooo00D0003oool00000003oool00P0000;oool200003oooo`800000
+0oooo`0000000002oooo0P000004oooo00000000oooo0P000006oooo00000000oooo0000oooo0P00
+0003oooo0000000000;oool00`000?ooooooo`3ooooo=_ooo`00T?ooo`800003oooo00@0003oool0
+00000002oooo0P000004oooo00000000oooo0P0000Goool010000?ooo`00000000;oool200002Ooo
+o`D000001?ooo`0000000?ooo`800002oooo0P000003oooo0000000000;oool010000?ooo`000000
+00;oool3000000?oool000000000oooooc_oool0093oool200001Oooo`800002oooo0P000004oooo
+00000000oooo1@0000?oool300000_ooo`80000?oooo0P000003oooo0000000000;oool2000000?o
+ool0000000000oooo`<000001?ooo`000000000000;oool50000ooooocSoool0093oool200001Ooo
+o`800002oooo0P000004oooo00000000oooo0P000004oooo00000000oooo0P000003oooo00000000
+00;oool2000000?oool0003oool03?ooo`8000000oooo`0000000002oooo0P000004oooo00000000
+oooo0P000004oooo00000000oooo0P000003oooo0000oooo008000000oooo`000000003ooooo>?oo
+o`00T?ooo`800004oooo0`000003oooo0000000000<00003oooo0`0000?oool300000_ooo`D0000<
+oooo1@0000?oool400000oooo`<00003oooo0`0000;oool30000ooooocWoool0093oool20000=?oo
+o`80003oooooC?ooo`00T?ooo`800005oooo0P0002goool20000ooooodcoool008ooool400001?oo
+o`80000/oooo0`000?oooom<oooo003ooooooooooaGoool00001\
+\>"],
+  ImageRangeCache->{{{0, 530}, {254.188, 0}} -> {0.236313, 5.18743, 0.0519385,
+   0.0519385}}]
+}, Open  ]]
+},
+FrontEndVersion->"Microsoft Windows 3.0",
+ScreenRectangle->{{0, 1024}, {0, 735}},
+WindowToolbars->{},
+CellGrouping->Manual,
+WindowSize->{688, 503},
+WindowMargins->{{10, Automatic}, {Automatic, 19}},
+PrivateNotebookOptions->{"ColorPalette"->{RGBColor, -1}},
+ShowCellLabel->True,
+ShowCellTags->False,
+RenderingOptions->{"ObjectDithering"->True,
+"RasterDithering"->False},
+StyleDefinitions -> Notebook[{
+  
+  Cell[CellGroupData[{
+  Cell["Style Definitions", "Subtitle"],
+  
+  Cell["\<\
+Modify the definitions below to change the default appearance of all cells in \
+a given style.  Make modifications to any definition using commands in the \
+Format menu.\
+\>", "Text"],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Style Environment Names", "Section"],
+  
+  Cell[StyleData[All, "Working"],
+    PageWidth->WindowWidth,
+    ScriptMinSize->9],
+  
+  Cell[StyleData[All, "Presentation"],
+    PageWidth->WindowWidth,
+    ScriptMinSize->12,
+    FontSize->16],
+  
+  Cell[StyleData[All, "Condensed"],
+    PageWidth->WindowWidth,
+    CellBracketOptions->{"Margins"->{1, 1},
+    "Widths"->{0, 5}},
+    ScriptMinSize->8,
+    FontSize->11],
+  
+  Cell[StyleData[All, "Printout"],
+    PageWidth->PaperWidth,
+    ScriptMinSize->5,
+    FontSize->10,
+    PrivateFontOptions->{"FontType"->"Outline"}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Notebook Options", "Section"],
+  
+  Cell["\<\
+The options defined for the style below will be used at the Notebook level.\
+\>", "Text"],
+  
+  Cell[StyleData["Notebook"],
+    PageHeaders->{{Cell[ 
+            TextData[ {
+              CounterBox[ "Page"]}], "PageNumber"], None, Cell[ 
+            TextData[ {
+              ValueBox[ "FileName"]}], "Header"]}, {Cell[ 
+            TextData[ {
+              ValueBox[ "FileName"]}], "Header"], None, Cell[ 
+            TextData[ {
+              CounterBox[ "Page"]}], "PageNumber"]}},
+    CellFrameLabelMargins->6,
+    StyleMenuListing->None]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Styles for Headings", "Section"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Title"],
+    CellMargins->{{12, Inherited}, {20, 40}},
+    CellGroupingRules->{"TitleGrouping", 0},
+    CellHorizontalScrolling->False,
+    PageBreakBelow->False,
+    TextAlignment->Center,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Title",
+    CounterAssignments->{{"Section", 0}, {"Equation", 0}, {"Figure", 0}, {
+        "Subtitle", 0}, {"Subsubtitle", 0}},
+    FontFamily->"Arial",
+    FontSize->24,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Title", "Presentation"],
+    CellMargins->{{24, 10}, {20, 40}},
+    LineSpacing->{1, 0},
+    FontSize->44],
+  
+  Cell[StyleData["Title", "Condensed"],
+    CellMargins->{{8, 10}, {4, 8}},
+    FontSize->20],
+  
+  Cell[StyleData["Title", "Printout"],
+    CellMargins->{{2, 10}, {15, 30}},
+    FontSize->24]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Subtitle"],
+    CellMargins->{{12, Inherited}, {10, 15}},
+    CellGroupingRules->{"TitleGrouping", 10},
+    CellHorizontalScrolling->False,
+    PageBreakBelow->False,
+    TextAlignment->Center,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Subtitle",
+    CounterAssignments->{{"Section", 0}, {"Equation", 0}, {"Figure", 0}, {
+        "Subsubtitle", 0}},
+    FontFamily->"Arial",
+    FontSize->18,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Subtitle", "Presentation"],
+    CellMargins->{{24, 10}, {15, 20}},
+    LineSpacing->{1, 0},
+    FontSize->36],
+  
+  Cell[StyleData["Subtitle", "Condensed"],
+    CellMargins->{{8, 10}, {4, 4}},
+    FontSize->14],
+  
+  Cell[StyleData["Subtitle", "Printout"],
+    CellMargins->{{2, 10}, {10, 15}},
+    FontSize->18]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Subsubtitle"],
+    CellMargins->{{12, Inherited}, {10, 20}},
+    CellGroupingRules->{"TitleGrouping", 20},
+    CellHorizontalScrolling->False,
+    PageBreakBelow->False,
+    TextAlignment->Center,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Subsubtitle",
+    CounterAssignments->{{"Section", 0}, {"Equation", 0}, {"Figure", 0}},
+    FontFamily->"Arial",
+    FontSize->14,
+    FontWeight->"Bold",
+    FontSlant->"Italic"],
+  
+  Cell[StyleData["Subsubtitle", "Presentation"],
+    CellMargins->{{24, 10}, {10, 20}},
+    LineSpacing->{1, 0},
+    FontSize->24],
+  
+  Cell[StyleData["Subsubtitle", "Condensed"],
+    CellMargins->{{8, 10}, {8, 12}},
+    FontSize->12],
+  
+  Cell[StyleData["Subsubtitle", "Printout"],
+    CellMargins->{{2, 10}, {8, 10}},
+    FontSize->14]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Section"],
+    CellDingbat->"\[GraySquare]",
+    CellMargins->{{25, Inherited}, {8, 24}},
+    CellGroupingRules->{"SectionGrouping", 30},
+    PageBreakBelow->False,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Section",
+    CounterAssignments->{{"Subsection", 0}, {"Subsubsection", 0}},
+    FontFamily->"Arial",
+    FontSize->14,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Section", "Presentation"],
+    CellMargins->{{40, 10}, {11, 32}},
+    LineSpacing->{1, 0},
+    FontSize->24],
+  
+  Cell[StyleData["Section", "Condensed"],
+    CellMargins->{{18, Inherited}, {6, 12}},
+    FontSize->12],
+  
+  Cell[StyleData["Section", "Printout"],
+    CellMargins->{{13, 0}, {7, 22}},
+    FontSize->14]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Subsection"],
+    CellDingbat->"\[FilledSquare]",
+    CellMargins->{{22, Inherited}, {8, 20}},
+    CellGroupingRules->{"SectionGrouping", 40},
+    PageBreakBelow->False,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Subsection",
+    CounterAssignments->{{"Subsubsection", 0}},
+    FontFamily->"Arial",
+    FontSize->12,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Subsection", "Presentation"],
+    CellMargins->{{36, 10}, {11, 32}},
+    LineSpacing->{1, 0},
+    FontSize->22],
+  
+  Cell[StyleData["Subsection", "Condensed"],
+    CellMargins->{{16, Inherited}, {6, 12}},
+    FontSize->12],
+  
+  Cell[StyleData["Subsection", "Printout"],
+    CellMargins->{{9, 0}, {7, 22}},
+    FontSize->12]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Subsubsection"],
+    CellDingbat->"\[EmptySquare]",
+    CellMargins->{{22, Inherited}, {8, 18}},
+    CellGroupingRules->{"SectionGrouping", 50},
+    PageBreakBelow->False,
+    LineSpacing->{1, 0},
+    CounterIncrements->"Subsubsection",
+    FontFamily->"Arial",
+    FontSize->10,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Subsubsection", "Presentation"],
+    CellMargins->{{34, 10}, {11, 26}},
+    LineSpacing->{1, 0},
+    FontSize->18],
+  
+  Cell[StyleData["Subsubsection", "Condensed"],
+    CellMargins->{{17, Inherited}, {6, 12}},
+    FontSize->10],
+  
+  Cell[StyleData["Subsubsection", "Printout"],
+    CellMargins->{{9, 0}, {7, 14}},
+    FontSize->11]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Styles for Body Text", "Section"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Text"],
+    CellMargins->{{12, 10}, {7, 7}},
+    LineSpacing->{1, 0},
+    CounterIncrements->"Text",
+    FontFamily->"Arial",
+    FontSize->12],
+  
+  Cell[StyleData["Text", "Presentation"],
+    CellMargins->{{24, 10}, {10, 10}},
+    LineSpacing->{1, 5}],
+  
+  Cell[StyleData["Text", "Condensed"],
+    CellMargins->{{8, 10}, {6, 6}},
+    LineSpacing->{1, 1}],
+  
+  Cell[StyleData["Text", "Printout"],
+    CellMargins->{{2, 2}, {6, 6}}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["SmallText"],
+    CellMargins->{{12, 10}, {6, 6}},
+    LineSpacing->{1, 0},
+    CounterIncrements->"SmallText",
+    FontFamily->"Arial",
+    FontSize->10],
+  
+  Cell[StyleData["SmallText", "Presentation"],
+    CellMargins->{{24, 10}, {8, 8}},
+    LineSpacing->{1, 5},
+    FontSize->12],
+  
+  Cell[StyleData["SmallText", "Condensed"],
+    CellMargins->{{8, 10}, {5, 5}},
+    LineSpacing->{1, 2},
+    FontSize->9],
+  
+  Cell[StyleData["SmallText", "Printout"],
+    CellMargins->{{2, 2}, {5, 5}},
+    FontSize->7]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Styles for Input/Output", "Section"],
+  
+  Cell["\<\
+The cells in this section define styles used for input and output to the \
+kernel.  Be careful when modifying, renaming, or removing these styles, \
+because the front end associates special meanings with these style names.\
+\>", "Text"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Input"],
+    CellMargins->{{45, 10}, {5, 7}},
+    Evaluatable->True,
+    CellGroupingRules->"InputGrouping",
+    CellHorizontalScrolling->True,
+    PageBreakWithin->False,
+    GroupPageBreakWithin->False,
+    CellLabelMargins->{{11, Inherited}, {Inherited, Inherited}},
+    DefaultFormatType->DefaultInputFormatType,
+    LineSpacing->{1, 0},
+    AutoItalicWords->{},
+    FormatType->InputForm,
+    ShowStringCharacters->True,
+    NumberMarks->True,
+    CounterIncrements->"Input",
+    FontFamily->"Courier New",
+    FontSize->12,
+    FontWeight->"Bold"],
+  
+  Cell[StyleData["Input", "Presentation"],
+    CellMargins->{{72, Inherited}, {8, 10}},
+    LineSpacing->{1, 0}],
+  
+  Cell[StyleData["Input", "Condensed"],
+    CellMargins->{{40, 10}, {2, 3}}],
+  
+  Cell[StyleData["Input", "Printout"],
+    CellMargins->{{39, 0}, {4, 6}},
+    FontSize->9]
+  }, Closed]],
+  
+  Cell[StyleData["InputOnly"],
+    Evaluatable->True,
+    CellGroupingRules->"InputGrouping",
+    CellHorizontalScrolling->True,
+    DefaultFormatType->DefaultInputFormatType,
+    AutoItalicWords->{},
+    FormatType->InputForm,
+    ShowStringCharacters->True,
+    NumberMarks->True,
+    CounterIncrements->"Input",
+    StyleMenuListing->None,
+    FontWeight->"Bold"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Output"],
+    CellMargins->{{47, 10}, {7, 5}},
+    CellEditDuplicate->True,
+    CellGroupingRules->"OutputGrouping",
+    CellHorizontalScrolling->True,
+    PageBreakWithin->False,
+    GroupPageBreakWithin->False,
+    GeneratedCell->True,
+    CellAutoOverwrite->True,
+    CellLabelMargins->{{11, Inherited}, {Inherited, Inherited}},
+    DefaultFormatType->DefaultOutputFormatType,
+    LineSpacing->{1, 0},
+    AutoItalicWords->{},
+    FormatType->InputForm,
+    CounterIncrements->"Output",
+    FontFamily->"Courier New",
+    FontSize->12],
+  
+  Cell[StyleData["Output", "Presentation"],
+    CellMargins->{{72, Inherited}, {10, 8}},
+    LineSpacing->{1, 0}],
+  
+  Cell[StyleData["Output", "Condensed"],
+    CellMargins->{{41, Inherited}, {3, 2}}],
+  
+  Cell[StyleData["Output", "Printout"],
+    CellMargins->{{39, 0}, {6, 4}},
+    FontSize->9]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Message"],
+    PageWidth->Infinity,
+    CellMargins->{{45, Inherited}, {Inherited, Inherited}},
+    CellGroupingRules->"OutputGrouping",
+    PageBreakWithin->False,
+    GroupPageBreakWithin->False,
+    GeneratedCell->True,
+    CellAutoOverwrite->True,
+    ShowCellLabel->False,
+    CellLabelMargins->{{11, Inherited}, {Inherited, Inherited}},
+    DefaultFormatType->DefaultOutputFormatType,
+    LineSpacing->{1, 0},
+    AutoItalicWords->{},
+    FormatType->InputForm,
+    CounterIncrements->"Message",
+    StyleMenuListing->None,
+    FontFamily->"Courier New",
+    FontSize->10,
+    FontColor->RGBColor[1, 0, 0]],
+  
+  Cell[StyleData["Message", "Presentation"],
+    CellMargins->{{72, Inherited}, {Inherited, Inherited}},
+    LineSpacing->{1, 0}],
+  
+  Cell[StyleData["Message", "Condensed"],
+    CellMargins->{{41, Inherited}, {Inherited, Inherited}}],
+  
+  Cell[StyleData["Message", "Printout"],
+    CellMargins->{{39, Inherited}, {Inherited, Inherited}},
+    FontSize->8,
+    FontColor->GrayLevel[0]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Print"],
+    PageWidth->Infinity,
+    CellMargins->{{45, Inherited}, {Inherited, Inherited}},
+    CellGroupingRules->"OutputGrouping",
+    CellHorizontalScrolling->True,
+    PageBreakWithin->False,
+    GroupPageBreakWithin->False,
+    GeneratedCell->True,
+    CellAutoOverwrite->True,
+    ShowCellLabel->False,
+    CellLabelMargins->{{11, Inherited}, {Inherited, Inherited}},
+    DefaultFormatType->DefaultOutputFormatType,
+    LineSpacing->{1, 0},
+    AutoItalicWords->{},
+    FormatType->InputForm,
+    CounterIncrements->"Print",
+    StyleMenuListing->None,
+    FontFamily->"Courier New",
+    FontSize->10],
+  
+  Cell[StyleData["Print", "Presentation"],
+    CellMargins->{{72, Inherited}, {Inherited, Inherited}},
+    LineSpacing->{1, 0}],
+  
+  Cell[StyleData["Print", "Condensed"],
+    CellMargins->{{41, Inherited}, {Inherited, Inherited}}],
+  
+  Cell[StyleData["Print", "Printout"],
+    CellMargins->{{39, Inherited}, {Inherited, Inherited}},
+    FontSize->8]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Graphics"],
+    PageWidth->Infinity,
+    CellMargins->{{4, Inherited}, {Inherited, Inherited}},
+    CellGroupingRules->"GraphicsGrouping",
+    CellHorizontalScrolling->False,
+    PageBreakWithin->False,
+    GeneratedCell->True,
+    CellAutoOverwrite->True,
+    ShowCellLabel->False,
+    DefaultFormatType->DefaultOutputFormatType,
+    LineSpacing->{1, 0},
+    FormatType->InputForm,
+    CounterIncrements->"Graphics",
+    ImageMargins->{{43, Inherited}, {Inherited, 0}},
+    StyleMenuListing->None,
+    FontFamily->"Courier New",
+    FontSize->10],
+  
+  Cell[StyleData["Graphics", "Presentation"],
+    ImageMargins->{{62, Inherited}, {Inherited, 0}}],
+  
+  Cell[StyleData["Graphics", "Condensed"],
+    ImageSize->{175, 175},
+    ImageMargins->{{38, Inherited}, {Inherited, 0}}],
+  
+  Cell[StyleData["Graphics", "Printout"],
+    ImageSize->{250, 250},
+    ImageMargins->{{30, Inherited}, {Inherited, 0}},
+    FontSize->9]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["CellLabel"],
+    StyleMenuListing->None,
+    FontFamily->"Helvetica",
+    FontSize->9,
+    FontColor->RGBColor[0, 0, 1]],
+  
+  Cell[StyleData["CellLabel", "Presentation"],
+    FontSize->12],
+  
+  Cell[StyleData["CellLabel", "Condensed"],
+    FontSize->9],
+  
+  Cell[StyleData["CellLabel", "Printout"],
+    FontFamily->"Courier",
+    FontSize->8,
+    FontSlant->"Italic",
+    FontColor->GrayLevel[0]]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Formulas and Programming", "Section"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["InlineFormula"],
+    CellMargins->{{10, 4}, {0, 8}},
+    CellHorizontalScrolling->True,
+    ScriptLevel->1,
+    SingleLetterItalics->True],
+  
+  Cell[StyleData["InlineFormula", "Presentation"],
+    CellMargins->{{24, 10}, {10, 10}},
+    LineSpacing->{1, 5}],
+  
+  Cell[StyleData["InlineFormula", "Condensed"],
+    CellMargins->{{8, 10}, {6, 6}},
+    LineSpacing->{1, 1}],
+  
+  Cell[StyleData["InlineFormula", "Printout"],
+    CellMargins->{{2, 0}, {6, 6}}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["DisplayFormula"],
+    CellMargins->{{42, Inherited}, {Inherited, Inherited}},
+    CellHorizontalScrolling->True,
+    ScriptLevel->0,
+    SingleLetterItalics->True,
+    StyleMenuListing->None,
+    UnderoverscriptBoxOptions->{LimitsPositioning->True}],
+  
+  Cell[StyleData["DisplayFormula", "Presentation"],
+    LineSpacing->{1, 5}],
+  
+  Cell[StyleData["DisplayFormula", "Condensed"],
+    LineSpacing->{1, 1}],
+  
+  Cell[StyleData["DisplayFormula", "Printout"]]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Styles for Headers and Footers", "Section"],
+  
+  Cell[StyleData["Header"],
+    CellMargins->{{0, 0}, {4, 1}},
+    CellHorizontalScrolling->False,
+    TextAlignment->Right,
+    LineSpacing->{1, 0},
+    StyleMenuListing->None,
+    FontFamily->"Times New Roman",
+    FontSize->10,
+    FontSlant->"Italic"],
+  
+  Cell[StyleData["Footer"],
+    CellMargins->{{0, 0}, {0, 4}},
+    CellHorizontalScrolling->False,
+    TextAlignment->Right,
+    LineSpacing->{1, 0},
+    StyleMenuListing->None,
+    FontFamily->"Times New Roman",
+    FontSize->10,
+    FontSlant->"Italic"],
+  
+  Cell[StyleData["PageNumber"],
+    CellMargins->{{0, 0}, {4, 1}},
+    StyleMenuListing->None,
+    FontFamily->"Times",
+    FontSize->10]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Palette Styles", "Section"],
+  
+  Cell["\<\
+The cells below define styles that define standard ButtonFunctions, for use \
+in palette buttons.\
+\>", "Text"],
+  
+  Cell[StyleData["Paste"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`NotebookApply[ 
+          FrontEnd`InputNotebook[ ], #, After]}]&)}],
+  
+  Cell[StyleData["Evaluate"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`NotebookApply[ 
+          FrontEnd`InputNotebook[ ], #, All], 
+        SelectionEvaluate[ 
+          FrontEnd`InputNotebook[ ], All]}]&)}],
+  
+  Cell[StyleData["EvaluateCell"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`NotebookApply[ 
+          FrontEnd`InputNotebook[ ], #, All], 
+        FrontEnd`SelectionMove[ 
+          FrontEnd`InputNotebook[ ], All, Cell, 1], 
+        FrontEnd`SelectionEvaluateCreateCell[ 
+          FrontEnd`InputNotebook[ ], All]}]&)}],
+  
+  Cell[StyleData["CopyEvaluate"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`SelectionCreateCell[ 
+          FrontEnd`InputNotebook[ ], All], 
+        FrontEnd`NotebookApply[ 
+          FrontEnd`InputNotebook[ ], #, All], 
+        FrontEnd`SelectionEvaluate[ 
+          FrontEnd`InputNotebook[ ], All]}]&)}],
+  
+  Cell[StyleData["CopyEvaluateCell"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`SelectionCreateCell[ 
+          FrontEnd`InputNotebook[ ], All], 
+        FrontEnd`NotebookApply[ 
+          FrontEnd`InputNotebook[ ], #, All], 
+        FrontEnd`SelectionEvaluateCreateCell[ 
+          FrontEnd`InputNotebook[ ], All]}]&)}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Hyperlink Styles", "Section"],
+  
+  Cell["\<\
+The cells below define styles useful for making hypertext ButtonBoxes.  The \
+\"Hyperlink\" style is for links within the same Notebook, or between \
+Notebooks.\
+\>", "Text"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Hyperlink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`NotebookLocate[ #2]}]&),
+    Active->True,
+    ButtonNote->ButtonData}],
+  
+  Cell[StyleData["Hyperlink", "Presentation"]],
+  
+  Cell[StyleData["Hyperlink", "Condensed"]],
+  
+  Cell[StyleData["Hyperlink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]],
+  
+  Cell["\<\
+The following styles are for linking automatically to the on-line help \
+system.\
+\>", "Text"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["MainBookLink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`HelpBrowserLookup[ "MainBook", #]}]&),
+    Active->True,
+    ButtonFrame->"None"}],
+  
+  Cell[StyleData["MainBookLink", "Presentation"]],
+  
+  Cell[StyleData["MainBookLink", "Condensed"]],
+  
+  Cell[StyleData["MainBookLink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["AddOnsLink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontFamily->"Courier",
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`HelpBrowserLookup[ "AddOns", #]}]&),
+    Active->True,
+    ButtonFrame->"None"}],
+  
+  Cell[StyleData["AddOnsLink", "Presentation"]],
+  
+  Cell[StyleData["AddOnsLink", "Condensed"]],
+  
+  Cell[StyleData["AddOnLink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["RefGuideLink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontFamily->"Courier",
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`HelpBrowserLookup[ "RefGuideLink", #]}]&),
+    Active->True,
+    ButtonFrame->"None"}],
+  
+  Cell[StyleData["RefGuideLink", "Presentation"]],
+  
+  Cell[StyleData["RefGuideLink", "Condensed"]],
+  
+  Cell[StyleData["RefGuideLink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["GettingStartedLink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`HelpBrowserLookup[ "GettingStarted", #]}]&),
+    Active->True,
+    ButtonFrame->"None"}],
+  
+  Cell[StyleData["GettingStartedLink", "Presentation"]],
+  
+  Cell[StyleData["GettingStartedLink", "Condensed"]],
+  
+  Cell[StyleData["GettingStartedLink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["OtherInformationLink"],
+    StyleMenuListing->None,
+    ButtonStyleMenuListing->Automatic,
+    FontColor->RGBColor[0, 0, 1],
+    FontVariations->{"Underline"->True},
+    ButtonBoxOptions->{ButtonFunction:>(FrontEndExecute[ {
+        FrontEnd`HelpBrowserLookup[ "OtherInformation", #]}]&),
+    Active->True,
+    ButtonFrame->"None"}],
+  
+  Cell[StyleData["OtherInformationLink", "Presentation"]],
+  
+  Cell[StyleData["OtherInformationLink", "Condensed"]],
+  
+  Cell[StyleData["OtherInformationLink", "Printout"],
+    FontColor->GrayLevel[0],
+    FontVariations->{"Underline"->False}]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["Placeholder Styles", "Section"],
+  
+  Cell["\<\
+The cells below define styles useful for making placeholder objects in \
+palette templates.\
+\>", "Text"],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["Placeholder"],
+    Editable->False,
+    Selectable->False,
+    StyleBoxAutoDelete->True,
+    Placeholder->True,
+    StyleMenuListing->None],
+  
+  Cell[StyleData["Placeholder", "Presentation"]],
+  
+  Cell[StyleData["Placeholder", "Condensed"]],
+  
+  Cell[StyleData["Placeholder", "Printout"]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell[StyleData["SelectionPlaceholder"],
+    Editable->False,
+    Selectable->False,
+    StyleBoxAutoDelete->True,
+    Placeholder->Primary,
+    StyleMenuListing->None,
+    DrawHighlighted->True],
+  
+  Cell[StyleData["SelectionPlaceholder", "Presentation"]],
+  
+  Cell[StyleData["SelectionPlaceholder", "Condensed"]],
+  
+  Cell[StyleData["SelectionPlaceholder", "Printout"]]
+  }, Closed]]
+  }, Closed]],
+  
+  Cell[CellGroupData[{
+  
+  Cell["FormatType Styles", "Section"],
+  
+  Cell["\<\
+The cells below define styles that are mixed in with the styles of most \
+cells.  If a cell's FormatType matches the name of one of the styles defined \
+below, then that style is applied between the cell's style and its own \
+options.\
+\>", "Text"],
+  
+  Cell[StyleData["CellExpression"],
+    PageWidth->Infinity,
+    CellMargins->{{6, Inherited}, {Inherited, Inherited}},
+    ShowCellLabel->False,
+    ShowSpecialCharacters->False,
+    AllowInlineCells->False,
+    AutoItalicWords->{},
+    StyleMenuListing->None,
+    FontFamily->"Courier",
+    Background->GrayLevel[1]],
+  
+  Cell[StyleData["InputForm"],
+    AllowInlineCells->False,
+    StyleMenuListing->None,
+    FontFamily->"Courier"],
+  
+  Cell[StyleData["OutputForm"],
+    PageWidth->Infinity,
+    TextAlignment->Left,
+    LineSpacing->{1, -5},
+    StyleMenuListing->None,
+    FontFamily->"Courier"],
+  
+  Cell[StyleData["StandardForm"],
+    LineSpacing->{1.25, 0},
+    StyleMenuListing->None,
+    FontFamily->"Courier"],
+  
+  Cell[StyleData["TraditionalForm"],
+    LineSpacing->{1.25, 0},
+    SingleLetterItalics->True,
+    TraditionalFunctionNotation->True,
+    DelimiterMatching->None,
+    StyleMenuListing->None],
+  
+  Cell["\<\
+The style defined below is mixed in to any cell that is in an inline cell \
+within another.\
+\>", "Text"],
+  
+  Cell[StyleData["InlineCell"],
+    TextAlignment->Left,
+    ScriptLevel->1,
+    StyleMenuListing->None],
+  
+  Cell[StyleData["InlineCellEditing"],
+    StyleMenuListing->None,
+    Background->RGBColor[1, 0.749996, 0.8]]
+  }, Closed]]
+  }, Open  ]]
+  }]
+]
+
+
+(***********************************************************************
+Cached data follows.  If you edit this Notebook file directly, not using
+Mathematica, you must remove the line containing CacheID at the top of 
+the file.  The cache data will then be recreated when you save this file 
+from within Mathematica.
+***********************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1709, 49, 125, 3, 89, "Title"],
+Cell[1837, 54, 142, 3, 46, "Subsubtitle"],
+Cell[1982, 59, 106, 4, 48, "Section"],
+Cell[2091, 65, 1218, 22, 233, "Input"],
+
+Cell[CellGroupData[{
+Cell[3334, 91, 112, 4, 48, "Section"],
+Cell[3449, 97, 247, 7, 75, "Input"]
+}, Open  ]],
+Cell[3711, 107, 111, 4, 48, "Section"],
+
+Cell[CellGroupData[{
+Cell[3847, 115, 153, 5, 30, "Input"],
+Cell[4003, 122, 113970, 3138, 264, 65562, 2536, "GraphicsData", 
+"PostScript", "Graphics"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+
+(***********************************************************************
+End of Mathematica Notebook file.
+***********************************************************************)
+

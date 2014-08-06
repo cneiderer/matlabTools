@@ -1,0 +1,55 @@
+
+File Name: C:\MATLAB_Toolbox\Results\WG_TXfilter_config1_80dB_v2.txt 
+Date Created: 16-Apr-2009 
+
+=========================
+
+Filter Design Specs: 
+  filter order = 7 
+  passband ripple = 0.010000 dB 
+  center frequency = 14.250000 GHz 
+  lower corner freq = 13.600000 GHz 
+  upper corner freq = 14.900000 GHz 
+  desired attenuation = 85.000000 GHz 
+  low rejection frequency = 12.400000 GHz 
+  high rejection frequency = 20.000000 GHz 
+  waveguide width: a = 0.622000 in 
+  waveguide height: b = 0.311000 in 
+  iris thickness = 0.040000 in 
+  filter length = 3.657440 in 
+
+Cavity Lengths [in]: 
+  Cavity 1 = 	 0.424705 
+  Cavity 2 = 	 0.487680 
+  Cavity 3 = 	 0.503489 
+  Cavity 4 = 	 0.505692 
+  Cavity 5 = 	 0.503489 
+  Cavity 6 = 	 0.487680 
+  Cavity 7 = 	 0.424705 
+
+Iris Widths [in]: 
+  Iris 0,1 = 	 0.329281 
+  Iris 1,2 = 	 0.227205 
+  Iris 2,3 = 	 0.193058 
+  Iris 3,4 = 	 0.186696 
+  Iris 4,5 = 	 0.186696 
+  Iris 5,6 = 	 0.193058 
+  Iris 6,7 = 	 0.227205 
+  Iris 7,8 = 	 0.329281 
+
+Symmetry Details: 
+  SymType = odd 
+  SymPoint = (0.000000,1.828720,0.000000) 
+  SymIris = 4,5 
+  SymCavity = 4 
+
+HFSS Object Coordinates [in]: 
+  Input Cav: 	 x=-0.311000, y=-0.207211, z=0.000000, dx=0.622000, dy=0.207211, dz=0.311000 
+  Iris 0,1: 	 x=-0.164641, y=0.000000, z=0.000000, dx=0.329281, dy=0.040000, dz=0.311000 
+  Iris 1,2: 	 x=-0.113602, y=0.464705, z=0.000000, dx=0.227205, dy=0.040000, dz=0.311000 
+  Iris 2,3: 	 x=-0.096529, y=0.992385, z=0.000000, dx=0.193058, dy=0.040000, dz=0.311000 
+  Iris 3,4: 	 x=-0.093348, y=1.535874, z=0.000000, dx=0.186696, dy=0.040000, dz=0.311000 
+  Cavity 1: 	 x=-0.311000, y=0.040000, z=0.000000, dx=0.622000, dy=0.424705, dz=0.311000 
+  Cavity 2: 	 x=-0.311000, y=0.504705, z=0.000000, dx=0.622000, dy=0.487680, dz=0.311000 
+  Cavity 3: 	 x=-0.311000, y=1.032385, z=0.000000, dx=0.622000, dy=0.503489, dz=0.311000 
+  Cavity 4: 	 x=-0.311000, y=1.575874, z=0.000000, dx=0.622000, dy=0.505692, dz=0.311000 

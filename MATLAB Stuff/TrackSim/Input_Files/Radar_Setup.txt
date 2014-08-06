@@ -1,0 +1,10 @@
+%Radar Location:
+   latitude  = 35.3;  (in degrees)
+   longitude = 126.4;  (in degrees)
+   altitude  = 0.0;  (in meters)
+
+%Radar Attitude:
+   azimuth   = 30.0;  (in degrees)
+%   azimuth   = 120.0;  (in degrees)
+   elevation = 10.0;  (in degrees)
+   clock     = 0.0;  (in degrees)

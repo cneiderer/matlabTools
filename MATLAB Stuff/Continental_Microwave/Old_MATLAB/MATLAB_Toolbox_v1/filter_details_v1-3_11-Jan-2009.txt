@@ -1,0 +1,61 @@
+File Name: filter_details_ver7_11-Jan-2009.txt
+Date: 11-Jan-2009
+
+=========================
+
+Filter Characteristics: 
+  filter order = 21
+  passband ripple = 0.2 dB 
+  center frequency = 4.67 GHz
+  passband = 4.356 GHz to 4.9894 GHz 
+  attenuation = 120 dB
+  low rejection frequency = 4.268 GHz
+  high rejection frequency = 5.0882 GHz
+  waveguide dimensions: a = 1.87in, b = 0.87 in 
+
+Resonator Lengths [in]: 
+  res1_length = 1.3237
+  res2_length = 1.476
+  res3_length = 1.5148
+  res4_length = 1.5224
+  res5_length = 1.5252
+  res6_length = 1.5266
+  res7_length = 1.5273
+  res8_length = 1.5278
+  res9_length = 1.528
+  res10_length = 1.5282
+  res11_length = 1.5282
+  res12_length = 1.5282
+  res13_length = 1.528
+  res14_length = 1.5278
+  res15_length = 1.5273
+  res16_length = 1.5266
+  res17_length = 1.5252
+  res18_length = 1.5224
+  res19_length = 1.5148
+  res20_length = 1.476
+  res21_length = 1.3237
+
+Iris Widths [in]: 
+  iris01_width = 0.96618
+  iris12_width = 0.73215
+  iris23_width = 0.65913
+  iris34_width = 0.64567
+  iris45_width = 0.64093
+  iris56_width = 0.63876
+  iris67_width = 0.63761
+  iris78_width = 0.63694
+  iris89_width = 0.63654
+  iris910_width = 0.63632
+  iris1011_width = 0.63621
+  iris1112_width = 0.63621
+  iris1213_width = 0.63632
+  iris1314_width = 0.63654
+  iris1415_width = 0.63694
+  iris1516_width = 0.63761
+  iris1617_width = 0.63876
+  iris1718_width = 0.64093
+  iris1819_width = 0.64567
+  iris1920_width = 0.65913
+  iris2021_width = 0.73215
+  iris2122_width = 0.96618
