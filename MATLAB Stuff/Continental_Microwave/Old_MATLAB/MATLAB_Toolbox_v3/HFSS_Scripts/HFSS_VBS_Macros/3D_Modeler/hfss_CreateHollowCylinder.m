@@ -1,9 +1,0 @@
-function hfss_CreateHollowCylinder(fid,Name,Axis,XCenter,YCenter,ZCenter,...
-    innerRad,outerRad,Height,Units)
-
-hfss_CreateCylinder(fid,Name,Axis,XCenter,YCenter,ZCenter,...
-    outerRad,Height,Units);
-hfss_CreateCylinder(fid,['inner_',Name],Axis,XCenter,YCenter,ZCenter,...
-    innerRad,Height,Units);
-
-hfss_Subtract(fid,Name,['inner_',Name],'false')

@@ -1,8 +1,0 @@
-% The mission profile for a radar
-%     maxTimeIntrack is in seconds
-%     requestedSNR_dB is the maximum requested signal to noise ration
-%          in dB.
-%     dataRate is the data rate, in Hz.
-   maxTimeIntrack       =    30;
-   requestedSNR_dB      =    25;
-   dataRate             =    10;     %-- Hz

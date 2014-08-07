@@ -1,9 +1,0 @@
-function hfss_CreateLoadResonator(fid,Name,Axis,XCenter,YCenter,ZCenter,...
-    innerRad,outerRad,ResLength,ResPhysLength,Units)
-
-hfss_CreateCylinder(fid,Name,Axis,XCenter,YCenter,ZCenter,...
-    outerRad,'ResLength',Units);
-hfss_CreateCylinder(fid,['inner_',Name],Axis,XCenter,YCenter,ResPhysLength,...
-    innerRad,'ResLength-ResPhysLength',Units);
-
-hfss_Subtract(fid,Name,['inner_',Name],'false')
